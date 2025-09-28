@@ -1,7 +1,7 @@
 # Hugo configuration file
 title: Luiz Junqueira
 languageCode: "pt-BR"
-baseURL: "https://candid-axolotl-e871bf.netlify.app/"
+baseURL: "https://luizgustavojunqueira.netlify.app/"
 
 outputs:
   home: [HTML,RSS]
@@ -72,7 +72,7 @@ params:
     default: light
 
   author:
-    name: Fabio Akita
-    email: fabioakita@gmail.com
+    name: Luiz Gustavo Junqueira
+    email: luizgustavossj@gmail.com
 
   description: "Meu blog onde conto sobre minha experiência no mundo da tecnologia"
