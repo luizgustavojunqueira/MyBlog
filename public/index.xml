@@ -1,17 +1,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Luiz Junqueira – Blog Posts</title>
-    <link>http://localhost:1313/blog/</link>
-    <description>Recent content in Blog Posts on Luiz Junqueira</description>
+    <title>Luiz Junqueira – Welcome to My Blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Welcome to My Blog on Luiz Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-BR</language>
-    <lastBuildDate>Sun, 28 Sep 2025 13:14:54 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 28 Sep 2025 13:30:00 -0300</lastBuildDate>
     
-	  <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
     
       
-        
       
     
     
