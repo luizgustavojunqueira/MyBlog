@@ -9,5 +9,5 @@ TZ = "Europe/Oslo"
 publish = "public"
 command = """\
   git config core.quotepath false && \
-  hugo --gc --minify"
-  """
+  hugo --gc --minify
+"""
