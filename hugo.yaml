@@ -1,7 +1,7 @@
 # Hugo configuration file
 title: Luiz Junqueira
 languageCode: "pt-BR"
-baseURL: "https://luizgustavojunqueira.netlify.app/"
+baseURL: "https://blog.luizgustavojunqueira.com/"
 
 outputs:
   home: [HTML,RSS]
