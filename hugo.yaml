@@ -1,7 +1,7 @@
 # Hugo configuration file
 title: Luiz Junqueira
 languageCode: "pt-BR"
-baseURL: "https://www.blog.luizgustavojunqueira.com/"
+baseURL: "https://candid-axolotl-e871bf.netlify.app/"
 
 outputs:
   home: [HTML,RSS]
