@@ -4,80 +4,80 @@ draft = false
 title = 'KVStore'
 +++
 
-Desvendando Paxos na Prática: Como Construímos um KV-Store Distribuído
+Unveiling Paxos in Practice: How We Built a Distributed KV-Store
 
 <!--more-->
 
-# A Proposta
+# The Proposal
 
-Sistemas distribuídos são a espinha dorsal de muitas aplicações modernas, mas gerenciar a consistência e a tolerância a falhas neles é um desafio. Neste post, vou compartilhar nossa jornada no desenvolvimento de um Key-Value Store distribuído para uma disciplina de faculdade, utilizando o complexo, mas robusto, algoritmo de consenso Paxos e a linguagem Go.
+Distributed systems are the backbone of many modern applications, but managing consistency and fault tolerance in them is a challenge. In this post, I'll share our journey in developing a distributed Key-Value Store for a college course, using the complex but robust Paxos consensus algorithm and the Go language.
 
-# O que é um algoritmo de Consenso Distribuído?
+# What is a Distributed Consensus Algorithm?
 
-Para dar um pouco de contexto, primeiro vamos definir um Sistema Distribuído.
+To provide some context, let's first define a Distributed System.
 
-Sistemas distribuídos são caracterizados por um conjunto de computadores independentes que se apresentam ao usuário como um sistema único e coerente. Esses sistemas são projetados para alcançar escalabilidade, disponibilidade e tolerância a falhas, características essenciais em aplicações modernas como bancos de dados distribuídos, sistemas de arquivos e plataformas de computação em nuvem.
+Distributed systems are characterized by a set of independent computers that present themselves to the user as a single, coherent system. These systems are designed to achieve scalability, availability, and fault tolerance—essential characteristics in modern applications such as distributed databases, file systems, and cloud computing platforms.
 
-Com isso, uma das maiores dificuldades nesses ambientes distribuídos é a coordenação entre os nós participantes da aplicação, especialmente quando é necessário garantir consistência entre estados replicados, em cenários onde falhas (nós indisponíveis, problemas de rede) podem ocorrer.
+With this in mind, one of the greatest difficulties in these distributed environments is coordination between the participating nodes of the application, especially when it's necessary to guarantee consistency between replicated states in scenarios where failures (unavailable nodes, network problems) can occur.
 
-Diante desse problema, foram desenvolvidos os algoritmos de consenso distribuído, como o Paxos ou o Raft, que servem para coordenar os nós e assegurar um acordo sobre valores ou operações, mesmo em condições adversas.
+Faced with this problem, distributed consensus algorithms were developed, such as Paxos or Raft, which serve to coordinate nodes and ensure agreement on values or operations, even under adverse conditions.
 
-## Algoritmo Paxos
+## Paxos Algorithm
 
-O algoritmo Paxos, proposto por Leslie Lamport, é uma solução robusta para o problema do consenso em sistemas distribuídos assíncronos com falhas. Ele resolve o problema do consenso garantindo que um conjunto de nós chegue a um acordo sobre um único valor, mesmo que até metade dos nós da rede falhem. Para isso, o Paxos opera em três papéis principais: Proposer (propõe valores), Acceptor (aceita ou rejeita propostas) e Learner (aprende o valor acordado). É um algoritmo complexo, mas sua confiabilidade o torna ideal para sistemas que exigem maior consistência.
+The Paxos algorithm, proposed by Leslie Lamport, is a robust solution to the consensus problem in asynchronous distributed systems with failures. It solves the consensus problem by ensuring that a set of nodes reaches agreement on a single value, even if up to half of the network nodes fail. To achieve this, Paxos operates in three main roles: Proposer (proposes values), Acceptor (accepts or rejects proposals), and Learner (learns the agreed value). It's a complex algorithm, but its reliability makes it ideal for systems that require greater consistency.
 
-Para entender como o Paxos garante esse consenso, vamos detalhar suas duas fases principais de operação:
+To understand how Paxos guarantees this consensus, let's detail its two main phases of operation:
 
-- **Fase 1, de preparação**:
-    - **1a. Preparar**: Um Proponente (Proposer) cria uma mensagem, chamada de “Prepare”. Essa mensagem é identificada por um número único **N**, que deve ser maior que qualquer número usado anteriormente em uma mensagem. Essa mensagem é enviada para um Quórum de Aceitadores (Acceptors).
-    - **1b. Promessa**: Ao receber uma mensagem, um Aceitador verifica se **N** é maior do que qualquer número de proposta que ele já tenha prometido aceitar. Caso seja, ele responde com uma Promise, comprometendo-se a não aceitar propostas com número menor que **N** e informando a proposta de maior número, **N'** que ele já aceitou, juntamente com seu valor, **V'**. Se **N** não for maior, apenas ignora ou responde com negação.
+- **Phase 1, preparation**:
+    - **1a. Prepare**: A Proposer creates a message called "Prepare". This message is identified by a unique number **N**, which must be greater than any number previously used in a message. This message is sent to a Quorum of Acceptors.
+    - **1b. Promise**: Upon receiving a message, an Acceptor checks if **N** is greater than any proposal number it has already promised to accept. If so, it responds with a Promise, committing not to accept proposals with a number lower than **N** and informing the highest-numbered proposal, **N'**, that it has already accepted, along with its value, **V'**. If **N** is not greater, it simply ignores or responds with denial.
 
-- **Fase 2, de aceitação**:
-    - **2a. Aceitar**: Se o Proponente receber Promises de um Quórum de Aceitadores, ele escolhe um valor **V** para sua proposta. Se algum Aceitador informou ter aceitado uma proposta anterior, o Proponente deve escolher o valor **V'** da proposta com o maior número **N'**. Caso contrário, pode escolher um valor novo. Então, o Proponente envia uma mensagem de Accept(**N**, **V**) para o Quórum de Aceitadores.
-    - **2b. Aceito**: Ao receber uma mensagem Accept(**N**, **V**), um Aceitador verifica se já prometeu não aceitar propostas com um número menor que **N**. Se não houver tal promessa, ele aceita a proposta, registra o valor **V** como aceito e envia uma mensagem Accepted(**N**, **V**) para os Aprendizes (Learners). Se já houver uma promessa para um **N** maior, apenas ignora.
+- **Phase 2, acceptance**:
+    - **2a. Accept**: If the Proposer receives Promises from a Quorum of Acceptors, it chooses a value **V** for its proposal. If any Acceptor informed having accepted a previous proposal, the Proposer must choose the value **V'** from the proposal with the highest number **N'**. Otherwise, it can choose a new value. Then, the Proposer sends an Accept(**N**, **V**) message to the Quorum of Acceptors.
+    - **2b. Accepted**: Upon receiving an Accept(**N**, **V**) message, an Acceptor checks if it has already promised not to accept proposals with a number lower than **N**. If there is no such promise, it accepts the proposal, records the value **V** as accepted, and sends an Accepted(**N**, **V**) message to the Learners. If there's already a promise for a higher **N**, it simply ignores.
 
-Em Paxos, o consenso é alcançado quando a maioria dos Aceitadores concorda com um mesmo número de identificador de proposta. Como cada identificador é único para um Proponente e um único valor é associado a esse identificador, garantir que a maioria aceite o mesmo ID de proposta implica que eles concordarão sobre o mesmo valor.
+In Paxos, consensus is reached when the majority of Acceptors agree on the same proposal identifier number. Since each identifier is unique to a Proposer and a single value is associated with that identifier, ensuring that the majority accepts the same proposal ID implies they will agree on the same value.
 
-No entanto, todo esse processo é utilizado para escolher apenas um valor, em um cenário real, teríamos um fluxo contínuo de valores acordados atuando como comandos para uma máquina de estados distribuídos. No entando, se cada comando for resultado de uma instância de Paxos, haveria uma sobrecarga significativa na rede, visto que para cada comando seriam enviadas 2 mensagens para todos os nós da rede (1a e 2a) e um nó teria que receber 2 mensagens de cada nó da rede (1b e 2b).
+However, this entire process is used to choose only one value. In a real scenario, we would have a continuous flow of agreed values acting as commands for a distributed state machine. However, if each command were the result of a Paxos instance, there would be significant network overhead, since for each command 2 messages would be sent to all network nodes (1a and 2a) and one node would have to receive 2 messages from each network node (1b and 2b).
 
-Para mitigar isso, uma otimização crucial é a eleição de um Líder, que simplifica a Fase 1 para decisões subsequentes, reduzindo o tráfego de rede.
+To mitigate this, a crucial optimization is the election of a Leader, which simplifies Phase 1 for subsequent decisions, reducing network traffic.
 
-# O que é um KV-Store?
+# What is a KV-Store?
 
-Resumidamente, um Key-Value store é um tipo de banco de dados mais simples e eficiente que armazena os dados como pares chave-valor. Tem maior desempenho para leitura e escrita visto que não tem um esquema rígido nem relações entre valores armazenados. É muito utilizado em sistemas distribuídos e para cache.
+In summary, a Key-Value store is a simpler and more efficient type of database that stores data as key-value pairs. It has better read and write performance since it doesn't have a rigid schema or relationships between stored values. It's widely used in distributed systems and for caching.
 
-# Um KV-Store com Paxos
+# A KV-Store with Paxos
 
-Certo, mas como juntar as duas coisas?
+Right, but how do we combine the two things?
 
-Como dito anteriormente, em um sistema real utilizando paxos, teríamos um fluxo contínuo de comandos acordados aplicados em um estado distribuído. Assim, podemos entender o estado do KV-store como o resultado da aplicação em ordem de todos os comandos decididos pelas rodadas de Paxos.
+As mentioned earlier, in a real system using Paxos, we would have a continuous flow of agreed commands applied to a distributed state. Thus, we can understand the KV-store state as the result of applying in order all commands decided by Paxos rounds.
 
-Para esse projeto definimos os seguintes comandos:
+For this project, we defined the following commands:
 
 - **SET** key value
 - **DELETE** key
 
-Exemplo:
+Example:
 
-Se tivermos os seguintes 2 comandos decididos:
+If we have the following 2 decided commands:
 
-- **SET** chave1 valor1
-- **SET** chave2 valor2
+- **SET** key1 value1
+- **SET** key2 value2
 
-O estado seria
-{ chave1: valor1, chave2: valor2 }
+The state would be:
+{ key1: value1, key2: value2 }
 
-Caso fizessemos **DELETE** chave1, teríamos: { chave2: valor2 }
+If we did **DELETE** key1, we would have: { key2: value2 }
 
-# Implementação
+# Implementation
 
-Para a implementação desse projeto, utilizamos Golang como linguagem principal, visto que ter um suporte muito bom para concorrência e comunicação distribuída, facilitando o desenvolvimento das funcionalidades necessárias. Já para a comunicação entre os nós, utilizamos gRPC.
+For the implementation of this project, we used Golang as the main language, since it has very good support for concurrency and distributed communication, facilitating the development of necessary functionalities. For communication between nodes, we used gRPC.
 
-## gRPC e protobuf
+## gRPC and protobuf
 
-A comunicação do gRPC necessita de uma definição protobuf das funções, parametros e respostas implementadas pelos nós.
+gRPC communication requires a protobuf definition of the functions, parameters, and responses implemented by the nodes.
 
-Todo nó do nosso sistema implementa as seguintes funções:
+Every node in our system implements the following functions:
 
 ```proto
 service Paxos{
@@ -86,55 +86,55 @@ service Paxos{
   rpc ProposeLeader(ProposeLeaderRequest) returns (ProposeLeaderResponse);
 }
 message PrepareRequest {
-  int64 proposal_id = 1; // número da proposta
-  int64 slot_id = 2; // número do slot da proposta
+  int64 proposal_id = 1; // proposal number
+  int64 slot_id = 2; // proposal slot number
 }
 
 enum CommandType{
-  UNKNOWN = 0; // comando desconhecido
-  SET = 1; // comando para definir um valor
-  DELETE = 2; // comando para deletar um valor
+  UNKNOWN = 0; // unknown command
+  SET = 1; // command to set a value
+  DELETE = 2; // command to delete a value
 }
 
 message Command{
-  CommandType type = 1; // tipo do comando
-  string key = 2; // chave do valor a ser manipulado
-  bytes value = 3; // valor a ser manipulado, se aplicável
-  int64 proposal_id = 4; // número da proposta associada ao comando
+  CommandType type = 1; // command type
+  string key = 2; // key of the value to be manipulated
+  bytes value = 3; // value to be manipulated, if applicable
+  int64 proposal_id = 4; // proposal number associated with the command
 }
 
 message PrepareResponse {
   bool success = 1;
-  string error_message = 2; // mensagem de erro, se houver
-  int64 accepted_proposal_id = 3; // número da proposta aceita
-  Command accepted_command = 4; // comando aceito, se houver
-  int64 current_proposal_id = 5; // número da proposta atual
+  string error_message = 2; // error message, if any
+  int64 accepted_proposal_id = 3; // accepted proposal number
+  Command accepted_command = 4; // accepted command, if any
+  int64 current_proposal_id = 5; // current proposal number
 }
 
 message AcceptRequest {
-  int64 proposal_id = 1; // número da proposta
-  int64 slot_id = 2; // número do slot da proposta
-  Command command = 3; // comando a ser aceito
+  int64 proposal_id = 1; // proposal number
+  int64 slot_id = 2; // proposal slot number
+  Command command = 3; // command to be accepted
 }
 
 message AcceptResponse {
-  bool success = 1; // indica se a aceitação foi bem-sucedida
-  int64 current_proposal_id = 2; // número da proposta aceita
-  string error_message = 3; // mensagem de erro, se houver
+  bool success = 1; // indicates if acceptance was successful
+  int64 current_proposal_id = 2; // accepted proposal number
+  string error_message = 3; // error message, if any
 }
 ```
 
-No caso, a função Prepare corresponde a **FASE 1** e a função Accept corresponde a **FASE 2** com PrepareRequest sendo **1a** e PrepareResponse sendo **1b**, e assim também para o accept.
+In this case, the Prepare function corresponds to **PHASE 1** and the Accept function corresponds to **PHASE 2**, with PrepareRequest being **1a** and PrepareResponse being **1b**, and likewise for accept.
 
-## Eleição do líder
+## Leader Election
 
-Para eleger o líder de um sistema paxos podemos utilizar o próprio paxos mas é um pouco mais complexo por causa de algumas peculiaridades.
+To elect the leader of a Paxos system, we can use Paxos itself, but it's a bit more complex due to some peculiarities.
 
-Como um nó decide se ele deve tentar se eleger lider?
+How does a node decide if it should try to elect itself as leader?
 
-A forma mais simples que conseguimos pensar é por meio de heartbeats, onde o líder atual envia periodicamente uma mensagem de heart beat para todos os nós da rede. Caso um nó fique mais que um certo tempo sem receber um heart beat do líder, ele assume que o líder está offline e após um certo atraso aleatório (para evitar multiplos nós iniciando eleição ao mesmo tempo) ele tenta se propor como líder.
+The simplest way we could think of is through heartbeats, where the current leader periodically sends a heartbeat message to all network nodes. If a node goes more than a certain time without receiving a heartbeat from the leader, it assumes the leader is offline and after a certain random delay (to avoid multiple nodes initiating election at the same time) it tries to propose itself as leader.
 
-Para essa parte, utilizamos as seguintes funções RPC.
+For this part, we used the following RPC functions:
 
 ```proto
 service Paxos{
@@ -143,36 +143,36 @@ service Paxos{
 }
 
 message ProposeLeaderRequest{
-  int64 proposal_id = 1; // Número da proposta para a eleição do líder
-  string candidate_address = 2; // Endereço do candidato a líder
+  int64 proposal_id = 1; // Proposal number for leader election
+  string candidate_address = 2; // Leader candidate address
 }
 
 message ProposeLeaderResponse{
   bool success = 1;
-  string error_message = 2; // Mensagem de erro, se houver
-  int64 current_highest_leader_proposal_id = 3; // Número da proposta do líder atual
-  string current_leader_address = 4; // Endereço do líder atual
-  int64 highest_decided_slot_id = 5; // Slot mais alto decidido até o momento
+  string error_message = 2; // Error message, if any
+  int64 current_highest_leader_proposal_id = 3; // Current leader's proposal number
+  string current_leader_address = 4; // Current leader's address
+  int64 highest_decided_slot_id = 5; // Highest slot decided so far
 }
 
 message LeaderHeartbeat{
-  string leader_address = 1; // Endereço do líder
-  int64 current_proposal_id = 2; // Número da proposta atual do líder
-  int64 highest_decided_slot_id = 3; // Slot mais alto decidido até o momento
+  string leader_address = 1; // Leader address
+  int64 current_proposal_id = 2; // Leader's current proposal number
+  int64 highest_decided_slot_id = 3; // Highest slot decided so far
 }
 
 message LeaderHeartbeatResponse{
-  bool success = 1; // Indica se o heartbeat foi bem-sucedido
-  string error_message = 2; // Mensagem de erro, se houver
-  int64 known_highest_slot_id = 3; // Slot mais alto que o Acceptor/Learner conhece
+  bool success = 1; // Indicates if heartbeat was successful
+  string error_message = 2; // Error message, if any
+  int64 known_highest_slot_id = 3; // Highest slot the Acceptor/Learner knows
 }
 ```
 
-Além disso, para evitar problemas que encontramos durante os testes, caso mais de 1 nó perceba a falta de líder, e começem uma eleição, caso o nó receba alguma indicação que já está acontecendo uma eleição com um ID maior que a eleição dele, seja por receber a proposta diretamente, ou por receber uma negação de outro nó contendo esse ID maior, ele aborta a própria eleição.
+Additionally, to avoid problems we encountered during testing, if more than one node perceives the lack of a leader and they start an election, if the node receives any indication that an election is already happening with an ID greater than its own election, whether by receiving the proposal directly or by receiving a denial from another node containing this higher ID, it aborts its own election.
 
-## Cliente
+## Client
 
-Para conseguir utilizar o KV-Store, sem ter acesso direto aos nós e uma forma de executar essa funções por eles, todos os nós também implementam a seguinte definição gRPC:
+To be able to use the KV-Store without having direct access to the nodes and a way to execute these functions through them, all nodes also implement the following gRPC definition:
 
 ```proto
 service KVStore{
@@ -217,7 +217,7 @@ message ListRequest{}
 
 message ListResponse {
   repeated KeyValuePair pairs = 1;
-  string error_message = 3; // Mensagem de erro, se houver
+  string error_message = 3; // Error message, if any
 }
 
 message KeyValuePair {
@@ -232,36 +232,36 @@ message ListLogResponse {
 
 message LogEntry {
   int64 slot_id = 1;
-  Command command = 2; // Comando associado ao log
+  Command command = 2; // Command associated with the log
 }
 
 message Command{
-  paxos.CommandType type = 1; // tipo do comando
-  string key = 2; // chave do valor a ser manipulado
-  string value = 3; // valor a ser manipulado, se aplicável
-  int64 proposal_id = 4; // número da proposta associada ao comando
+  paxos.CommandType type = 1; // command type
+  string key = 2; // key of the value to be manipulated
+  string value = 3; // value to be manipulated, if applicable
+  int64 proposal_id = 4; // proposal number associated with the command
 }
 
 message TryElectRequest {
 }
 
 message TryElectResponse {
-  bool success = 1; // Indica se a eleição foi bem-sucedida
-  string error_message = 2; // Mensagem de erro, se houver
+  bool success = 1; // Indicates if election was successful
+  string error_message = 2; // Error message, if any
 }
 ```
 
-Assim, é possível utilizar um cliente gRPC que faz essas chamadas para algum nó específico.
+Thus, it's possible to use a gRPC client that makes these calls to a specific node.
 
-Para uma melhor interação com o usuário, foi desenvolvido também um servidor HTTP (também em Golang), que atua como cliente gRPC do serviço KVStore. Assim, acompanhado do frontend desenvolvido em React, podemos visualizar e mandar comandos para cada nó do sistema.
+For better user interaction, an HTTP server (also in Golang) was also developed, which acts as a gRPC client for the KVStore service. Thus, accompanied by the frontend developed in React, we can visualize and send commands to each system node.
 
 ## Registry
 
-Certo, mas como os nós e o servidor HTTP sabem os endereços dos nós para conseguirem fazer as requisições gRPC?
+Right, but how do the nodes and HTTP server know the node addresses to be able to make gRPC requests?
 
-Também desenvolvemos um serviço de registry simples, também por meio de gRPC, no qual cada nó se registra ao iniciar e permite que sejam consultados os endereços de todos os nós do sistema. Além da utilização de heartbeats para conhecimento de qual nó está ativo ou não.
+We also developed a simple registry service, also through gRPC, in which each node registers upon startup and allows the addresses of all system nodes to be queried. In addition to using heartbeats for knowledge of which node is active or not.
 
-O registry é definido pelo seguinte protobuf:
+The registry is defined by the following protobuf:
 
 ```proto
 service Registry {
@@ -271,11 +271,11 @@ service Registry {
 }
 ```
 
-## Sincronização
+## Synchronization
 
-A parte de sincronização diz respeito a sincronização do estado dos comandos decididos entre todos os nós.
+The synchronization part concerns the synchronization of the decided commands state between all nodes.
 
-Se temos um sistema com 50 nós rodando, fazemos a inserção de alguns valores e depois 10 novos nós são conectados, eles precisam saber do histórico dos valores decididos pelos outros 50. Para isso, também temos a seguinte função:
+If we have a system with 50 nodes running, we insert some values, and then 10 new nodes are connected, they need to know the history of values decided by the other 50. For this, we also have the following function:
 
 ```proto
 service Paxos{
@@ -283,21 +283,21 @@ service Paxos{
 }
 
 message LearnRequest{
-  int64 slot_id = 1; // Número do slot que está sendo aprendido
+  int64 slot_id = 1; // Slot number being learned
 }
 
 message LearnResponse{
-  bool decided = 1; // Indica se o slot foi decidido
-  Command command = 2; // Comando associado ao slot, se decidido
+  bool decided = 1; // Indicates if the slot was decided
+  Command command = 2; // Command associated with the slot, if decided
 }
 ```
 
-Quando um nó recebe um HeartBeat, é enviado junto o número do ultimo slot decidido pelo sistema e, caso seja maior que o que o nó tem no seu estado interno, ele executa **Learn** até sincronizar todo o seu estado.
+When a node receives a HeartBeat, the number of the last slot decided by the system is sent along, and if it's greater than what the node has in its internal state, it executes **Learn** until it synchronizes its entire state.
 
-Essa sincronização também é feita durante a eleição de um novo líder caso necessário.
+This synchronization is also done during the election of a new leader if necessary.
 
-# Conclusão
+# Conclusion
 
-A implementação desse projeto foi algo desafiador e que trouxe muito aprendizado sobre problemas de concorrência e sistemas distribuidos, além de possibilitar uma maior prática com Golang que é uma linguagem muito interessante para sistemas concorrentes e o protocolo de comunicação gRPC.
+The implementation of this project was challenging and brought a lot of learning about concurrency problems and distributed systems, in addition to enabling greater practice with Golang, which is a very interesting language for concurrent systems and the gRPC communication protocol.
 
-O código para o projeto pode ser encontrado no nosso [Repositório do GitHub](https://github.com/luizgustavojunqueira/KV-Store-Paxos?tab=readme-ov-file#key-value-store-with-paxos) junto com instruções de como executar todos os serviços envolvidos.
+The code for the project can be found in our [GitHub Repository](https://github.com/luizgustavojunqueira/KV-Store-Paxos?tab=readme-ov-file#key-value-store-with-paxos) along with instructions on how to run all the services involved.

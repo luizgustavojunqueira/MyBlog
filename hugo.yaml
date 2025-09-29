@@ -1,7 +1,16 @@
 # Hugo configuration file
-title: Luiz Junqueira
-languageCode: "pt-BR"
+title: Luiz Gustavo Junqueira
 baseURL: "https://blog.luizgustavojunqueira.com/"
+
+
+defaultContentLanguage: pt-BR
+
+languages:
+  pt-BR:
+    languageCode: pt-BR
+    languageDirection: ltr
+    languageName: Português
+    weight: 1
 
 outputs:
   home: [HTML,RSS]
@@ -21,15 +30,26 @@ markup:
   highlight:
     noClasses: false
 
+defaultContentLanguage: en
+languages:
+  en:
+    languageName: English
+    weight: 1
+  br:
+    languageName: Português
+    weight: 2
+
 menu:
   main:
     - name: Blog
       pageRef: /blog
       weight: 1
     - name: Contact ↗
+      identifier: contact
       url: "https://github.com/luizgustavojunqueira"
       weight: 2
     - name: Search
+      identificar: search
       weight: 3
       params:
         type: search
@@ -49,7 +69,11 @@ menu:
       params:
         icon: github
 
+enableGitInfo: true
+
 params:
+  page:
+    width: full
   navbar:
     displayTitle: true
     displayLogo: false
@@ -76,3 +100,6 @@ params:
     email: luizgustavossj@gmail.com
 
   description: "Meu blog onde conto sobre minha experiência no mundo da tecnologia"
+  displayUpdatedDate: true
+  dateFormat: "January 2, 2006"
+  externalLinkDecoration: true

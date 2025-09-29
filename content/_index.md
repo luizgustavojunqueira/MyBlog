@@ -8,18 +8,18 @@ cascade:
 toc: false
 ---
 
-# Hello, I'm Luiz Junqueira! 👋
+# Hello, I'm Luiz Gustavo Junqueira! 👋
 
-Welcome to my space dedicated to **Computing and Web Technology**.
+Welcome to my space dedicated to Computing and the Web.
 
-Here, I share my thoughts and discoveries, focusing on **web development, system architecture, and specific niche technologies** that pique my interest.
+Here, I share my thoughts and discoveries, focusing on web development, system architecture, and especially on technologies and specific topics that interest me.
 
-My mission is to **explore the core fundamentals of technology and simplify complex concepts for fellow learners**.
+My mission is to explore the core fundamentals of technologies in order to keep a record for myself in the future and for anyone who might need it.
 
 ---
 
 ## What to Expect
 
 {{< callout type="info" emoji="💡" >}}
-Browse the **Blog Posts** section in the sidebar menu or use the search bar to find tutorials, guides, and detailed analyses on programming and the future of the web.
+Browse through the **Posts** section in the side menu or use the search bar to find tutorials, guides, analyses, and reflections from my journey in the world of computing.
 {{< /callout >}}
