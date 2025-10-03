@@ -1,6 +1,5 @@
 # Hugo configuration file
 title: Luiz Gustavo Junqueira
-baseURL: "https://blog.luizgustavojunqueira.com/"
 
 
 defaultContentLanguage: pt-BR
@@ -30,7 +29,7 @@ markup:
   highlight:
     noClasses: false
 
-defaultContentLanguage: en
+defaultContentLanguage: br
 languages:
   en:
     languageName: English

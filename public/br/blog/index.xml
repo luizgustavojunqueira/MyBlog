@@ -1,25 +1,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Luiz Gustavo Junqueira – Bem vindo ao meu blog</title>
-    <link>//localhost:1313/</link>
-    <description>Recent content in Bem vindo ao meu blog on Luiz Gustavo Junqueira</description>
+    <title>Luiz Gustavo Junqueira – Blogs</title>
+    <link>//localhost:1313/br/blog/</link>
+    <description>Recent content in Blogs on Luiz Gustavo Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>br</language>
-    <lastBuildDate>Sun, 28 Sep 2025 13:30:00 -0300</lastBuildDate>
+    <lastBuildDate>Fri, 03 Oct 2025 07:20:59 -0400</lastBuildDate>
     
-	  <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="//localhost:1313/br/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
       
+        
       
     
     
     <item>
       <title>VM Windows no Linux</title>
-      <link>//localhost:1313/blog/windowsvm/</link>
+      <link>//localhost:1313/br/blog/windowsvm/</link>
       <pubDate>Fri, 03 Oct 2025 07:20:59 -0400</pubDate>
       
-      <guid>//localhost:1313/blog/windowsvm/</guid>
+      <guid>//localhost:1313/br/blog/windowsvm/</guid>
       <description>
         
         
@@ -316,10 +317,10 @@ firewall_backend = &amp;#34;iptables&amp;#34;
     
     <item>
       <title>KVStore</title>
-      <link>//localhost:1313/blog/kvstore/</link>
+      <link>//localhost:1313/br/blog/kvstore/</link>
       <pubDate>Sun, 28 Sep 2025 13:14:54 -0400</pubDate>
       
-      <guid>//localhost:1313/blog/kvstore/</guid>
+      <guid>//localhost:1313/br/blog/kvstore/</guid>
       <description>
         
         
@@ -618,10 +619,10 @@ firewall_backend = &amp;#34;iptables&amp;#34;
     
     <item>
       <title>Construindo meu Blog</title>
-      <link>//localhost:1313/blog/buildingablog/</link>
+      <link>//localhost:1313/br/blog/buildingablog/</link>
       <pubDate>Sun, 28 Sep 2025 12:59:28 -0400</pubDate>
       
-      <guid>//localhost:1313/blog/buildingablog/</guid>
+      <guid>//localhost:1313/br/blog/buildingablog/</guid>
       <description>
         
         

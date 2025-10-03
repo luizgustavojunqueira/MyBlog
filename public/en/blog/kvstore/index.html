@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="br" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="robots" content="noindex, nofollow" />
   <link rel="icon shortcut" href="/favicon.ico" sizes="32x32" />
@@ -9,14 +9,14 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
 <title>KVStore – Luiz Gustavo Junqueira</title>
-  <meta name="description" content="Desvendando Paxos na Prática: Como Construímos um KV-Store Distribuído" /><link rel="canonical" href="//localhost:1313/blog/kvstore/" itemprop="url" />
+  <meta name="description" content="Unveiling Paxos in Practice: How We Built a Distributed KV-Store" /><link rel="canonical" href="//localhost:1313/en/blog/kvstore/" itemprop="url" />
 
 <meta property="og:title" content="KVStore">
 <meta
   property="og:description"
   content="
     
-      Desvendando Paxos na Prática: Como Construímos um KV-Store Distribuído
+      Unveiling Paxos in Practice: How We Built a Distributed KV-Store
     
   ">
 <meta
@@ -24,7 +24,7 @@
   content="
     article
   ">
-<meta property="og:url" content="//localhost:1313/blog/kvstore/"><meta property="article:section" content="blog">
+<meta property="og:url" content="//localhost:1313/en/blog/kvstore/"><meta property="article:section" content="blog">
 
 <meta
   property="article:published_time"
@@ -33,18 +33,18 @@
 
 <meta
   property="article:modified_time"
-  content="2025-09-29T19:46:45-04:00">
+  content="2025-09-28T13:14:54-04:00">
 
 
 
   <meta itemprop="name" content="KVStore">
-  <meta itemprop="description" content="Desvendando Paxos na Prática: Como Construímos um KV-Store Distribuído">
+  <meta itemprop="description" content="Unveiling Paxos in Practice: How We Built a Distributed KV-Store">
   <meta itemprop="datePublished" content="2025-09-28T13:14:54-04:00">
-  <meta itemprop="dateModified" content="2025-09-29T19:46:45-04:00">
-  <meta itemprop="wordCount" content="2162">
+  <meta itemprop="dateModified" content="2025-09-28T13:14:54-04:00">
+  <meta itemprop="wordCount" content="2094">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="KVStore">
-  <meta name="twitter:description" content="Desvendando Paxos na Prática: Como Construímos um KV-Store Distribuído">
+  <meta name="twitter:description" content="Unveiling Paxos in Practice: How We Built a Distributed KV-Store">
 <link href="/css/compiled/main.css" rel="stylesheet" />
     <link href="/css/variables.css" rel="stylesheet" />
     <link href="/css/custom.css" rel="stylesheet" />
@@ -88,12 +88,12 @@
   ></div>
 
   <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
-    <a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="/">
+    <a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="/en/">
     <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none" title="Luiz Gustavo Junqueira">Luiz Gustavo Junqueira</span>
 </a>
 <a
   title=""
-  href="/blog"
+  href="/en/blog"
   
   class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:font-medium"
 ><span class="hx:text-center">Blog</span>
@@ -106,7 +106,7 @@
 </a><div class="hextra-search-wrapper hx:relative hx:md:w-64">
   <div class="hx:relative hx:flex hx:items-center hx:text-gray-900 hx:contrast-more:text-gray-800 hx:dark:text-gray-300 hx:contrast-more:dark:text-gray-300">
     <input
-      placeholder="Buscar..."
+      placeholder="Search..."
       class="hextra-search-input hx:focus:hextra-focus hx:block hx:w-full hx:appearance-none hx:rounded-lg hx:px-3 hx:py-2 hx:transition-colors hx:text-base hx:leading-tight hx:md:text-sm hx:bg-black/[.05] hx:dark:bg-gray-50/10 hx:focus:bg-white hx:dark:focus:bg-dark hx:placeholder:text-gray-500 hx:dark:placeholder:text-gray-400 hx:contrast-more:border hx:contrast-more:border-current"
       type="search"
       value=""
@@ -128,12 +128,12 @@
 </div>
 <div class="hx:flex hx:justify-items-start hx:group" data-theme="light">
   <button
-    title="Mudar tema"
+    title="Change theme"
     data-state="closed"
     data-location="top"
     class="hextra-theme-toggle hx:cursor-pointer hx:rounded-md hx:text-left hx:font-medium hx:p-2 hx:grow"
     type="button"
-    aria-label="Mudar tema"
+    aria-label="Change theme"
   >
     <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=24 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg height=24 class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><svg height=24 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="currentColor">
   <path d="M 11.996094,2 C 6.4986225,2.0192368 2.03125,6.5024993 2.03125,12 c 0,5.497501 4.4673725,9.980763 9.964844,10 H 12 12.0039 c 5.497471,-0.01924 9.964844,-4.502499 9.964844,-10 0,-5.4975007 -4.467373,-9.9807632 -9.964844,-10 H 12 Z M 12,4 c 4.417218,0.017598 7.96875,3.5822356 7.96875,8 0,4.417764 -3.551532,7.982402 -7.96875,8 z" />
@@ -150,7 +150,7 @@
         data-item="light"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Claro
+        Light
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -159,7 +159,7 @@
         data-item="dark"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Escuro
+        Dark
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -168,7 +168,7 @@
         data-item="system"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Sistema
+        System
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -186,7 +186,7 @@
     <div class="hextra-search-wrapper hx:relative hx:md:w-64">
   <div class="hx:relative hx:flex hx:items-center hx:text-gray-900 hx:contrast-more:text-gray-800 hx:dark:text-gray-300 hx:contrast-more:dark:text-gray-300">
     <input
-      placeholder="Buscar..."
+      placeholder="Search..."
       class="hextra-search-input hx:focus:hextra-focus hx:block hx:w-full hx:appearance-none hx:rounded-lg hx:px-3 hx:py-2 hx:transition-colors hx:text-base hx:leading-tight hx:md:text-sm hx:bg-black/[.05] hx:dark:bg-gray-50/10 hx:focus:bg-white hx:dark:focus:bg-dark hx:placeholder:text-gray-500 hx:dark:placeholder:text-gray-400 hx:contrast-more:border hx:contrast-more:border-current"
       type="search"
       value=""
@@ -215,7 +215,7 @@
           <li class="open"><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-    href="/blog/"
+    href="/en/blog/"
     
   >Blog Posts
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></span>
@@ -223,42 +223,42 @@
         <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-    href="/blog/windowsvm/"
+    href="/en/blog/windowsvm/"
     
-  >VM Windows no Linux
+  >Windows VM on Linux
     </a>
               
             </li><li class="hx:flex hx:flex-col open"><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
-    href="/blog/kvstore/"
+    href="/en/blog/kvstore/"
     
   >KVStore
     </a>
   
     <ul class='hx:flex hx:flex-col hx:gap-1 hx:relative hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:dark:before:bg-neutral-800 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:pr-3 hx:rtl:before:right-0 hx:ltr:ml-3 hx:rtl:mr-3'><li>
               <a
-                href="#algoritmo-paxos"
+                href="#paxos-algorithm"
                 class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >Algoritmo Paxos</a>
+              >Paxos Algorithm</a>
             </li>
           <li>
               <a
-                href="#grpc-e-protobuf"
+                href="#grpc-and-protobuf"
                 class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >gRPC e protobuf</a>
+              >gRPC and protobuf</a>
             </li>
           <li>
               <a
-                href="#elei%c3%a7%c3%a3o-do-l%c3%adder"
+                href="#leader-election"
                 class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >Eleição do líder</a>
+              >Leader Election</a>
             </li>
           <li>
               <a
-                href="#cliente"
+                href="#client"
                 class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >Cliente</a>
+              >Client</a>
             </li>
           <li>
               <a
@@ -268,9 +268,9 @@
             </li>
           <li>
               <a
-                href="#sincroniza%c3%a7%c3%a3o"
+                href="#synchronization"
                 class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >Sincronização</a>
+              >Synchronization</a>
             </li>
           </ul>
   
@@ -278,9 +278,9 @@
             </li><li class="hx:flex hx:flex-col "><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-    href="/blog/buildingablog/"
+    href="/en/blog/buildingablog/"
     
-  >Construindo meu Blog
+  >Building my Blog
     </a>
               
             </li></ul>
@@ -298,14 +298,14 @@
   
     <div class="hx:md:hidden hx:justify-end hx:sticky hx:bottom-0 hx:max-h-(--menu-height) hx:bg-white hx:dark:bg-dark hx:mx-4 hx:py-4 hx:shadow-[0_-12px_16px_#fff] hx:flex hx:items-center hx:gap-2 hx:border-gray-200 hx:dark:border-neutral-800 hx:dark:shadow-[0_-12px_16px_#111] hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:shadow-none hx:border-t" data-toggle-animation="show"><div class="hx:flex hx:justify-items-start hx:grow">
     <button
-      title="Mudar idioma"
+      title="Change language"
       data-state="closed"
       data-location=""
       class="hextra-language-switcher hx:cursor-pointer hx:rounded-md hx:text-left hx:font-medium hx:h-7 hx:px-2 hx:text-xs hx:text-gray-600 hx:transition-colors hx:dark:text-gray-400 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:grow"
       type="button"
-      aria-label="Mudar idioma"
+      aria-label="Change language"
     >
-      <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg><span>Português</span></div>
+      <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg><span>English</span></div>
     </button>
     <ul
       class="hextra-language-options hx:hidden hx:z-20 hx:max-h-64 hx:overflow-auto hx:rounded-md hx:ring-1 hx:ring-black/5 hx:bg-white hx:py-1 hx:text-sm hx:shadow-lg hx:dark:ring-white/20 hx:dark:bg-neutral-800"
@@ -317,7 +317,7 @@
           <a
             href="/en/blog/kvstore/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
-          >English</a>
+          >English<span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span></a>
         </li>
       
         
@@ -325,17 +325,17 @@
           <a
             href="/blog/kvstore/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
-          >Português<span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span></a>
+          >Português</a>
         </li>
       </ul>
   </div><div class="hx:flex hx:justify-items-start hx:group" data-theme="light">
   <button
-    title="Mudar tema"
+    title="Change theme"
     data-state="closed"
     data-location="bottom-right"
     class="hextra-theme-toggle hx:cursor-pointer hx:rounded-md hx:text-left hx:font-medium hx:h-7 hx:px-2 hx:text-xs hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:font-medium hx:text-gray-600 hx:transition-colors hx:dark:text-gray-400 hx:grow"
     type="button"
-    aria-label="Mudar tema"
+    aria-label="Change theme"
   >
     <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><svg height=12 class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="currentColor">
   <path d="M 11.996094,2 C 6.4986225,2.0192368 2.03125,6.5024993 2.03125,12 c 0,5.497501 4.4673725,9.980763 9.964844,10 H 12 12.0039 c 5.497471,-0.01924 9.964844,-4.502499 9.964844,-10 0,-5.4975007 -4.467373,-9.9807632 -9.964844,-10 H 12 Z M 12,4 c 4.417218,0.017598 7.96875,3.5822356 7.96875,8 0,4.417764 -3.551532,7.982402 -7.96875,8 z" />
@@ -352,7 +352,7 @@
         data-item="light"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Claro
+        Light
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -361,7 +361,7 @@
         data-item="dark"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Escuro
+        Dark
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -370,7 +370,7 @@
         data-item="system"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Sistema
+        System
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -378,21 +378,21 @@
 </div></div></aside>
     
 <nav class="hextra-toc hx:order-last hx:hidden hx:w-64 hx:shrink-0 hx:xl:block hx:print:hidden hx:px-4" aria-label="table of contents">
-    <div class="hextra-scrollbar hx:sticky hx:top-16 hx:overflow-y-auto hx:pr-4 hx:pt-6 hx:text-sm [hyphens:auto] hx:max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] hx:ltr:-mr-4 hx:rtl:-ml-4"><p class="hx:mb-4 hx:font-semibold hx:tracking-tight">Nesta página</p><ul></ul><ul>
+    <div class="hextra-scrollbar hx:sticky hx:top-16 hx:overflow-y-auto hx:pr-4 hx:pt-6 hx:text-sm [hyphens:auto] hx:max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] hx:ltr:-mr-4 hx:rtl:-ml-4"><p class="hx:mb-4 hx:font-semibold hx:tracking-tight">On this page</p><ul></ul><ul>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#algoritmo-paxos">Algoritmo Paxos
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#paxos-algorithm">Paxos Algorithm
         </a>
       </li></ul><ul></ul><ul></ul><ul>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#grpc-e-protobuf">gRPC e protobuf
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#grpc-and-protobuf">gRPC and protobuf
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#elei%c3%a7%c3%a3o-do-l%c3%adder">Eleição do líder
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#leader-election">Leader Election
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#cliente">Cliente
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#client">Client
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
@@ -400,12 +400,12 @@
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#sincroniza%c3%a7%c3%a3o">Sincronização
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#synchronization">Synchronization
         </a>
       </li></ul><ul></ul>
       <div class="hx:mt-8 hx:border-t hx:bg-white hx:pt-8 hx:shadow-[0_-12px_16px_white] hx:dark:bg-dark hx:dark:shadow-[0_-12px_16px_#111] hx:sticky hx:bottom-0 hx:flex hx:flex-col hx:items-start hx:gap-2 hx:pb-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-t hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:border-neutral-400">
         <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx:cursor-pointer hx:transition-all hx:duration-75 hx:opacity-0 hx:text-xs hx:font-medium hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-100 hx:contrast-more:text-gray-800 hx:contrast-more:dark:text-gray-50">
-          <span>Voltar para cima</span>
+          <span>Scroll to top</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx:inline hx:ltr:ml-1 hx:rtl:mr-1 hx:h-3.5 hx:w-3.5 hx:rounded-full hx:border hx:border-gray-500 hx:hover:border-gray-900 hx:dark:border-gray-400 hx:dark:hover:border-gray-100 hx:contrast-more:border-gray-800 hx:contrast-more:dark:border-gray-50">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
           </svg>
@@ -419,62 +419,62 @@
       <main class="hx:w-full hx:min-w-0 hx:max-w-6xl hx:px-6 hx:pt-4 hx:md:px-12">
         <div class="hx:mt-1.5 hx:flex hx:items-center hx:gap-1 hx:overflow-hidden hx:text-sm hx:text-gray-500 hx:dark:text-gray-400 hx:contrast-more:text-current">
         <div class="hx:whitespace-nowrap hx:transition-colors hx:min-w-[24px] hx:overflow-hidden hx:text-ellipsis hx:hover:text-gray-900 hx:dark:hover:text-gray-100">
-          <a href="/blog/">Blog Posts</a>
+          <a href="/en/blog/">Blog Posts</a>
         </div><svg class="hx:w-3.5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx:whitespace-nowrap hx:transition-colors hx:font-medium hx:text-gray-700 hx:contrast-more:font-bold hx:contrast-more:text-current hx:dark:text-gray-100 hx:contrast-more:dark:text-current">KVStore</div>
   </div>
 
         <h1 class="hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">KVStore</h1>
-        <div class="hx:mt-4 hx:mb-16 hx:text-gray-500 hx:dark:text-gray-400 hx:text-sm hx:flex hx:items-center hx:flex-wrap hx:gap-y-2"><span class="hx:mr-1">Gwengolo 28, 2025</span></div>
+        <div class="hx:mt-4 hx:mb-16 hx:text-gray-500 hx:dark:text-gray-400 hx:text-sm hx:flex hx:items-center hx:flex-wrap hx:gap-y-2"><span class="hx:mr-1">September 28, 2025</span></div>
         <div class="content">
-          <p>Desvendando Paxos na Prática: Como Construímos um KV-Store Distribuído</p>
-<h1>A Proposta</h1><p>Sistemas distribuídos são a espinha dorsal de muitas aplicações modernas, mas gerenciar a consistência e a tolerância a falhas neles é um desafio. Neste post, vou compartilhar nossa jornada no desenvolvimento de um Key-Value Store distribuído para uma disciplina de faculdade, utilizando o complexo, mas robusto, algoritmo de consenso Paxos e a linguagem Go.</p>
-<h1>O que é um algoritmo de Consenso Distribuído?</h1><p>Para dar um pouco de contexto, primeiro vamos definir um Sistema Distribuído.</p>
-<p>Sistemas distribuídos são caracterizados por um conjunto de computadores independentes que se apresentam ao usuário como um sistema único e coerente. Esses sistemas são projetados para alcançar escalabilidade, disponibilidade e tolerância a falhas, características essenciais em aplicações modernas como bancos de dados distribuídos, sistemas de arquivos e plataformas de computação em nuvem.</p>
-<p>Com isso, uma das maiores dificuldades nesses ambientes distribuídos é a coordenação entre os nós participantes da aplicação, especialmente quando é necessário garantir consistência entre estados replicados, em cenários onde falhas (nós indisponíveis, problemas de rede) podem ocorrer.</p>
-<p>Diante desse problema, foram desenvolvidos os algoritmos de consenso distribuído, como o Paxos ou o Raft, que servem para coordenar os nós e assegurar um acordo sobre valores ou operações, mesmo em condições adversas.</p>
-<h2>Algoritmo Paxos<span class="hx:absolute hx:-mt-20" id="algoritmo-paxos"></span>
-    <a href="#algoritmo-paxos" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>O algoritmo Paxos, proposto por Leslie Lamport, é uma solução robusta para o problema do consenso em sistemas distribuídos assíncronos com falhas. Ele resolve o problema do consenso garantindo que um conjunto de nós chegue a um acordo sobre um único valor, mesmo que até metade dos nós da rede falhem. Para isso, o Paxos opera em três papéis principais: Proposer (propõe valores), Acceptor (aceita ou rejeita propostas) e Learner (aprende o valor acordado). É um algoritmo complexo, mas sua confiabilidade o torna ideal para sistemas que exigem maior consistência.</p>
-<p>Para entender como o Paxos garante esse consenso, vamos detalhar suas duas fases principais de operação:</p>
+          <p>Unveiling Paxos in Practice: How We Built a Distributed KV-Store</p>
+<h1>The Proposal</h1><p>Distributed systems are the backbone of many modern applications, but managing consistency and fault tolerance in them is a challenge. In this post, I&rsquo;ll share our journey in developing a distributed Key-Value Store for a college course, using the complex but robust Paxos consensus algorithm and the Go language.</p>
+<h1>What is a Distributed Consensus Algorithm?</h1><p>To provide some context, let&rsquo;s first define a Distributed System.</p>
+<p>Distributed systems are characterized by a set of independent computers that present themselves to the user as a single, coherent system. These systems are designed to achieve scalability, availability, and fault tolerance—essential characteristics in modern applications such as distributed databases, file systems, and cloud computing platforms.</p>
+<p>With this in mind, one of the greatest difficulties in these distributed environments is coordination between the participating nodes of the application, especially when it&rsquo;s necessary to guarantee consistency between replicated states in scenarios where failures (unavailable nodes, network problems) can occur.</p>
+<p>Faced with this problem, distributed consensus algorithms were developed, such as Paxos or Raft, which serve to coordinate nodes and ensure agreement on values or operations, even under adverse conditions.</p>
+<h2>Paxos Algorithm<span class="hx:absolute hx:-mt-20" id="paxos-algorithm"></span>
+    <a href="#paxos-algorithm" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>The Paxos algorithm, proposed by Leslie Lamport, is a robust solution to the consensus problem in asynchronous distributed systems with failures. It solves the consensus problem by ensuring that a set of nodes reaches agreement on a single value, even if up to half of the network nodes fail. To achieve this, Paxos operates in three main roles: Proposer (proposes values), Acceptor (accepts or rejects proposals), and Learner (learns the agreed value). It&rsquo;s a complex algorithm, but its reliability makes it ideal for systems that require greater consistency.</p>
+<p>To understand how Paxos guarantees this consensus, let&rsquo;s detail its two main phases of operation:</p>
 <ul>
 <li>
-<p><strong>Fase 1, de preparação</strong>:</p>
+<p><strong>Phase 1, preparation</strong>:</p>
 <ul>
-<li><strong>1a. Preparar</strong>: Um Proponente (Proposer) cria uma mensagem, chamada de “Prepare”. Essa mensagem é identificada por um número único <strong>N</strong>, que deve ser maior que qualquer número usado anteriormente em uma mensagem. Essa mensagem é enviada para um Quórum de Aceitadores (Acceptors).</li>
-<li><strong>1b. Promessa</strong>: Ao receber uma mensagem, um Aceitador verifica se <strong>N</strong> é maior do que qualquer número de proposta que ele já tenha prometido aceitar. Caso seja, ele responde com uma Promise, comprometendo-se a não aceitar propostas com número menor que <strong>N</strong> e informando a proposta de maior número, <strong>N&rsquo;</strong> que ele já aceitou, juntamente com seu valor, <strong>V&rsquo;</strong>. Se <strong>N</strong> não for maior, apenas ignora ou responde com negação.</li>
+<li><strong>1a. Prepare</strong>: A Proposer creates a message called &ldquo;Prepare&rdquo;. This message is identified by a unique number <strong>N</strong>, which must be greater than any number previously used in a message. This message is sent to a Quorum of Acceptors.</li>
+<li><strong>1b. Promise</strong>: Upon receiving a message, an Acceptor checks if <strong>N</strong> is greater than any proposal number it has already promised to accept. If so, it responds with a Promise, committing not to accept proposals with a number lower than <strong>N</strong> and informing the highest-numbered proposal, <strong>N&rsquo;</strong>, that it has already accepted, along with its value, <strong>V&rsquo;</strong>. If <strong>N</strong> is not greater, it simply ignores or responds with denial.</li>
 </ul>
 </li>
 <li>
-<p><strong>Fase 2, de aceitação</strong>:</p>
+<p><strong>Phase 2, acceptance</strong>:</p>
 <ul>
-<li><strong>2a. Aceitar</strong>: Se o Proponente receber Promises de um Quórum de Aceitadores, ele escolhe um valor <strong>V</strong> para sua proposta. Se algum Aceitador informou ter aceitado uma proposta anterior, o Proponente deve escolher o valor <strong>V&rsquo;</strong> da proposta com o maior número <strong>N&rsquo;</strong>. Caso contrário, pode escolher um valor novo. Então, o Proponente envia uma mensagem de Accept(<strong>N</strong>, <strong>V</strong>) para o Quórum de Aceitadores.</li>
-<li><strong>2b. Aceito</strong>: Ao receber uma mensagem Accept(<strong>N</strong>, <strong>V</strong>), um Aceitador verifica se já prometeu não aceitar propostas com um número menor que <strong>N</strong>. Se não houver tal promessa, ele aceita a proposta, registra o valor <strong>V</strong> como aceito e envia uma mensagem Accepted(<strong>N</strong>, <strong>V</strong>) para os Aprendizes (Learners). Se já houver uma promessa para um <strong>N</strong> maior, apenas ignora.</li>
+<li><strong>2a. Accept</strong>: If the Proposer receives Promises from a Quorum of Acceptors, it chooses a value <strong>V</strong> for its proposal. If any Acceptor informed having accepted a previous proposal, the Proposer must choose the value <strong>V&rsquo;</strong> from the proposal with the highest number <strong>N&rsquo;</strong>. Otherwise, it can choose a new value. Then, the Proposer sends an Accept(<strong>N</strong>, <strong>V</strong>) message to the Quorum of Acceptors.</li>
+<li><strong>2b. Accepted</strong>: Upon receiving an Accept(<strong>N</strong>, <strong>V</strong>) message, an Acceptor checks if it has already promised not to accept proposals with a number lower than <strong>N</strong>. If there is no such promise, it accepts the proposal, records the value <strong>V</strong> as accepted, and sends an Accepted(<strong>N</strong>, <strong>V</strong>) message to the Learners. If there&rsquo;s already a promise for a higher <strong>N</strong>, it simply ignores.</li>
 </ul>
 </li>
 </ul>
-<p>Em Paxos, o consenso é alcançado quando a maioria dos Aceitadores concorda com um mesmo número de identificador de proposta. Como cada identificador é único para um Proponente e um único valor é associado a esse identificador, garantir que a maioria aceite o mesmo ID de proposta implica que eles concordarão sobre o mesmo valor.</p>
-<p>No entanto, todo esse processo é utilizado para escolher apenas um valor, em um cenário real, teríamos um fluxo contínuo de valores acordados atuando como comandos para uma máquina de estados distribuídos. No entando, se cada comando for resultado de uma instância de Paxos, haveria uma sobrecarga significativa na rede, visto que para cada comando seriam enviadas 2 mensagens para todos os nós da rede (1a e 2a) e um nó teria que receber 2 mensagens de cada nó da rede (1b e 2b).</p>
-<p>Para mitigar isso, uma otimização crucial é a eleição de um Líder, que simplifica a Fase 1 para decisões subsequentes, reduzindo o tráfego de rede.</p>
-<h1>O que é um KV-Store?</h1><p>Resumidamente, um Key-Value store é um tipo de banco de dados mais simples e eficiente que armazena os dados como pares chave-valor. Tem maior desempenho para leitura e escrita visto que não tem um esquema rígido nem relações entre valores armazenados. É muito utilizado em sistemas distribuídos e para cache.</p>
-<h1>Um KV-Store com Paxos</h1><p>Certo, mas como juntar as duas coisas?</p>
-<p>Como dito anteriormente, em um sistema real utilizando paxos, teríamos um fluxo contínuo de comandos acordados aplicados em um estado distribuído. Assim, podemos entender o estado do KV-store como o resultado da aplicação em ordem de todos os comandos decididos pelas rodadas de Paxos.</p>
-<p>Para esse projeto definimos os seguintes comandos:</p>
+<p>In Paxos, consensus is reached when the majority of Acceptors agree on the same proposal identifier number. Since each identifier is unique to a Proposer and a single value is associated with that identifier, ensuring that the majority accepts the same proposal ID implies they will agree on the same value.</p>
+<p>However, this entire process is used to choose only one value. In a real scenario, we would have a continuous flow of agreed values acting as commands for a distributed state machine. However, if each command were the result of a Paxos instance, there would be significant network overhead, since for each command 2 messages would be sent to all network nodes (1a and 2a) and one node would have to receive 2 messages from each network node (1b and 2b).</p>
+<p>To mitigate this, a crucial optimization is the election of a Leader, which simplifies Phase 1 for subsequent decisions, reducing network traffic.</p>
+<h1>What is a KV-Store?</h1><p>In summary, a Key-Value store is a simpler and more efficient type of database that stores data as key-value pairs. It has better read and write performance since it doesn&rsquo;t have a rigid schema or relationships between stored values. It&rsquo;s widely used in distributed systems and for caching.</p>
+<h1>A KV-Store with Paxos</h1><p>Right, but how do we combine the two things?</p>
+<p>As mentioned earlier, in a real system using Paxos, we would have a continuous flow of agreed commands applied to a distributed state. Thus, we can understand the KV-store state as the result of applying in order all commands decided by Paxos rounds.</p>
+<p>For this project, we defined the following commands:</p>
 <ul>
 <li><strong>SET</strong> key value</li>
 <li><strong>DELETE</strong> key</li>
 </ul>
-<p>Exemplo:</p>
-<p>Se tivermos os seguintes 2 comandos decididos:</p>
+<p>Example:</p>
+<p>If we have the following 2 decided commands:</p>
 <ul>
-<li><strong>SET</strong> chave1 valor1</li>
-<li><strong>SET</strong> chave2 valor2</li>
+<li><strong>SET</strong> key1 value1</li>
+<li><strong>SET</strong> key2 value2</li>
 </ul>
-<p>O estado seria
-{ chave1: valor1, chave2: valor2 }</p>
-<p>Caso fizessemos <strong>DELETE</strong> chave1, teríamos: { chave2: valor2 }</p>
-<h1>Implementação</h1><p>Para a implementação desse projeto, utilizamos Golang como linguagem principal, visto que ter um suporte muito bom para concorrência e comunicação distribuída, facilitando o desenvolvimento das funcionalidades necessárias. Já para a comunicação entre os nós, utilizamos gRPC.</p>
-<h2>gRPC e protobuf<span class="hx:absolute hx:-mt-20" id="grpc-e-protobuf"></span>
-    <a href="#grpc-e-protobuf" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>A comunicação do gRPC necessita de uma definição protobuf das funções, parametros e respostas implementadas pelos nós.</p>
-<p>Todo nó do nosso sistema implementa as seguintes funções:</p>
+<p>The state would be:
+{ key1: value1, key2: value2 }</p>
+<p>If we did <strong>DELETE</strong> key1, we would have: { key2: value2 }</p>
+<h1>Implementation</h1><p>For the implementation of this project, we used Golang as the main language, since it has very good support for concurrency and distributed communication, facilitating the development of necessary functionalities. For communication between nodes, we used gRPC.</p>
+<h2>gRPC and protobuf<span class="hx:absolute hx:-mt-20" id="grpc-and-protobuf"></span>
+    <a href="#grpc-and-protobuf" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>gRPC communication requires a protobuf definition of the functions, parameters, and responses implemented by the nodes.</p>
+<p>Every node in our system implements the following functions:</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto" data-lang="proto"><span class="line"><span class="cl"><span class="kd">service</span> <span class="n">Paxos</span><span class="p">{</span><span class="err">
@@ -483,57 +483,57 @@
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="k">rpc</span> <span class="n">ProposeLeader</span><span class="p">(</span><span class="n">ProposeLeaderRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">ProposeLeaderResponse</span><span class="p">);</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">PrepareRequest</span> <span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// número da proposta
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">slot_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// número do slot da proposta
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// proposal number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">slot_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// proposal slot number
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">enum</span> <span class="n">CommandType</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// comando desconhecido
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">SET</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// comando para definir um valor
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">DELETE</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// comando para deletar um valor
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// unknown command
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">SET</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// command to set a value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">DELETE</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// command to delete a value
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">Command</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">CommandType</span> <span class="n">type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// tipo do comando
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">key</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// chave do valor a ser manipulado
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">bytes</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// valor a ser manipulado, se aplicável
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// número da proposta associada ao comando
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">CommandType</span> <span class="n">type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// command type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">key</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// key of the value to be manipulated
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">bytes</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// value to be manipulated, if applicable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// proposal number associated with the command
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">PrepareResponse</span> <span class="p">{</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// mensagem de erro, se houver
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">accepted_proposal_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// número da proposta aceita
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Command</span> <span class="n">accepted_command</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// comando aceito, se houver
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_proposal_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// número da proposta atual
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// error message, if any
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">accepted_proposal_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// accepted proposal number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Command</span> <span class="n">accepted_command</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// accepted command, if any
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_proposal_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// current proposal number
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">AcceptRequest</span> <span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// número da proposta
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">slot_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// número do slot da proposta
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Command</span> <span class="n">command</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// comando a ser aceito
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// proposal number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">slot_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// proposal slot number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Command</span> <span class="n">command</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// command to be accepted
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">AcceptResponse</span> <span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// indica se a aceitação foi bem-sucedida
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_proposal_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// número da proposta aceita
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// mensagem de erro, se houver
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// indicates if acceptance was successful
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_proposal_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// accepted proposal number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// error message, if any
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
   <button
     class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
+    title="Copy code"
   >
     <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
 <div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
   </button>
 </div>
 </div>
-<p>No caso, a função Prepare corresponde a <strong>FASE 1</strong> e a função Accept corresponde a <strong>FASE 2</strong> com PrepareRequest sendo <strong>1a</strong> e PrepareResponse sendo <strong>1b</strong>, e assim também para o accept.</p>
-<h2>Eleição do líder<span class="hx:absolute hx:-mt-20" id="eleição-do-líder"></span>
-    <a href="#elei%c3%a7%c3%a3o-do-l%c3%adder" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Para eleger o líder de um sistema paxos podemos utilizar o próprio paxos mas é um pouco mais complexo por causa de algumas peculiaridades.</p>
-<p>Como um nó decide se ele deve tentar se eleger lider?</p>
-<p>A forma mais simples que conseguimos pensar é por meio de heartbeats, onde o líder atual envia periodicamente uma mensagem de heart beat para todos os nós da rede. Caso um nó fique mais que um certo tempo sem receber um heart beat do líder, ele assume que o líder está offline e após um certo atraso aleatório (para evitar multiplos nós iniciando eleição ao mesmo tempo) ele tenta se propor como líder.</p>
-<p>Para essa parte, utilizamos as seguintes funções RPC.</p>
+<p>In this case, the Prepare function corresponds to <strong>PHASE 1</strong> and the Accept function corresponds to <strong>PHASE 2</strong>, with PrepareRequest being <strong>1a</strong> and PrepareResponse being <strong>1b</strong>, and likewise for accept.</p>
+<h2>Leader Election<span class="hx:absolute hx:-mt-20" id="leader-election"></span>
+    <a href="#leader-election" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>To elect the leader of a Paxos system, we can use Paxos itself, but it&rsquo;s a bit more complex due to some peculiarities.</p>
+<p>How does a node decide if it should try to elect itself as leader?</p>
+<p>The simplest way we could think of is through heartbeats, where the current leader periodically sends a heartbeat message to all network nodes. If a node goes more than a certain time without receiving a heartbeat from the leader, it assumes the leader is offline and after a certain random delay (to avoid multiple nodes initiating election at the same time) it tries to propose itself as leader.</p>
+<p>For this part, we used the following RPC functions:</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto" data-lang="proto"><span class="line"><span class="cl"><span class="kd">service</span> <span class="n">Paxos</span><span class="p">{</span><span class="err">
@@ -542,41 +542,41 @@
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">ProposeLeaderRequest</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Número da proposta para a eleição do líder
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">candidate_address</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Endereço do candidato a líder
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Proposal number for leader election
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">candidate_address</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Leader candidate address
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">ProposeLeaderResponse</span><span class="p">{</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Mensagem de erro, se houver
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_highest_leader_proposal_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Número da proposta do líder atual
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">current_leader_address</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// Endereço do líder atual
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">highest_decided_slot_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Slot mais alto decidido até o momento
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Error message, if any
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_highest_leader_proposal_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Current leader&#39;s proposal number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">current_leader_address</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// Current leader&#39;s address
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">highest_decided_slot_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Highest slot decided so far
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">LeaderHeartbeat</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">leader_address</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Endereço do líder
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_proposal_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Número da proposta atual do líder
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">highest_decided_slot_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Slot mais alto decidido até o momento
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">leader_address</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Leader address
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">current_proposal_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Leader&#39;s current proposal number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">highest_decided_slot_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Highest slot decided so far
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">LeaderHeartbeatResponse</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Indica se o heartbeat foi bem-sucedido
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Mensagem de erro, se houver
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">known_highest_slot_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Slot mais alto que o Acceptor/Learner conhece
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Indicates if heartbeat was successful
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Error message, if any
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">known_highest_slot_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Highest slot the Acceptor/Learner knows
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
   <button
     class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
+    title="Copy code"
   >
     <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
 <div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
   </button>
 </div>
 </div>
-<p>Além disso, para evitar problemas que encontramos durante os testes, caso mais de 1 nó perceba a falta de líder, e começem uma eleição, caso o nó receba alguma indicação que já está acontecendo uma eleição com um ID maior que a eleição dele, seja por receber a proposta diretamente, ou por receber uma negação de outro nó contendo esse ID maior, ele aborta a própria eleição.</p>
-<h2>Cliente<span class="hx:absolute hx:-mt-20" id="cliente"></span>
-    <a href="#cliente" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Para conseguir utilizar o KV-Store, sem ter acesso direto aos nós e uma forma de executar essa funções por eles, todos os nós também implementam a seguinte definição gRPC:</p>
+<p>Additionally, to avoid problems we encountered during testing, if more than one node perceives the lack of a leader and they start an election, if the node receives any indication that an election is already happening with an ID greater than its own election, whether by receiving the proposal directly or by receiving a denial from another node containing this higher ID, it aborts its own election.</p>
+<h2>Client<span class="hx:absolute hx:-mt-20" id="client"></span>
+    <a href="#client" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>To be able to use the KV-Store without having direct access to the nodes and a way to execute these functions through them, all nodes also implement the following gRPC definition:</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto" data-lang="proto"><span class="line"><span class="cl"><span class="kd">service</span> <span class="n">KVStore</span><span class="p">{</span><span class="err">
@@ -621,7 +621,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">ListResponse</span> <span class="p">{</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="k">repeated</span> <span class="n">KeyValuePair</span> <span class="n">pairs</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Mensagem de erro, se houver
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Error message, if any
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">KeyValuePair</span> <span class="p">{</span><span class="err">
@@ -636,38 +636,38 @@
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">LogEntry</span> <span class="p">{</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">slot_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">Command</span> <span class="n">command</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Comando associado ao log
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">Command</span> <span class="n">command</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Command associated with the log
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">Command</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">paxos.CommandType</span> <span class="n">type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// tipo do comando
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">key</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// chave do valor a ser manipulado
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// valor a ser manipulado, se aplicável
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// número da proposta associada ao comando
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="n">paxos.CommandType</span> <span class="n">type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// command type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">key</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// key of the value to be manipulated
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// value to be manipulated, if applicable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int64</span> <span class="n">proposal_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// proposal number associated with the command
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">TryElectRequest</span> <span class="p">{</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">TryElectResponse</span> <span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Indica se a eleição foi bem-sucedida
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Mensagem de erro, se houver
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Indicates if election was successful
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">string</span> <span class="n">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Error message, if any
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
   <button
     class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
+    title="Copy code"
   >
     <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
 <div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
   </button>
 </div>
 </div>
-<p>Assim, é possível utilizar um cliente gRPC que faz essas chamadas para algum nó específico.</p>
-<p>Para uma melhor interação com o usuário, foi desenvolvido também um servidor HTTP (também em Golang), que atua como cliente gRPC do serviço KVStore. Assim, acompanhado do frontend desenvolvido em React, podemos visualizar e mandar comandos para cada nó do sistema.</p>
+<p>Thus, it&rsquo;s possible to use a gRPC client that makes these calls to a specific node.</p>
+<p>For better user interaction, an HTTP server (also in Golang) was also developed, which acts as a gRPC client for the KVStore service. Thus, accompanied by the frontend developed in React, we can visualize and send commands to each system node.</p>
 <h2>Registry<span class="hx:absolute hx:-mt-20" id="registry"></span>
-    <a href="#registry" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Certo, mas como os nós e o servidor HTTP sabem os endereços dos nós para conseguirem fazer as requisições gRPC?</p>
-<p>Também desenvolvemos um serviço de registry simples, também por meio de gRPC, no qual cada nó se registra ao iniciar e permite que sejam consultados os endereços de todos os nós do sistema. Além da utilização de heartbeats para conhecimento de qual nó está ativo ou não.</p>
-<p>O registry é definido pelo seguinte protobuf:</p>
+    <a href="#registry" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Right, but how do the nodes and HTTP server know the node addresses to be able to make gRPC requests?</p>
+<p>We also developed a simple registry service, also through gRPC, in which each node registers upon startup and allows the addresses of all system nodes to be queried. In addition to using heartbeats for knowledge of which node is active or not.</p>
+<p>The registry is defined by the following protobuf:</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto" data-lang="proto"><span class="line"><span class="cl"><span class="kd">service</span> <span class="n">Registry</span> <span class="p">{</span><span class="err">
@@ -677,16 +677,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">}</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
   <button
     class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
+    title="Copy code"
   >
     <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
 <div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
   </button>
 </div>
 </div>
-<h2>Sincronização<span class="hx:absolute hx:-mt-20" id="sincronização"></span>
-    <a href="#sincroniza%c3%a7%c3%a3o" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>A parte de sincronização diz respeito a sincronização do estado dos comandos decididos entre todos os nós.</p>
-<p>Se temos um sistema com 50 nós rodando, fazemos a inserção de alguns valores e depois 10 novos nós são conectados, eles precisam saber do histórico dos valores decididos pelos outros 50. Para isso, também temos a seguinte função:</p>
+<h2>Synchronization<span class="hx:absolute hx:-mt-20" id="synchronization"></span>
+    <a href="#synchronization" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>The synchronization part concerns the synchronization of the decided commands state between all nodes.</p>
+<p>If we have a system with 50 nodes running, we insert some values, and then 10 new nodes are connected, they need to know the history of values decided by the other 50. For this, we also have the following function:</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-proto" data-lang="proto"><span class="line"><span class="cl"><span class="kd">service</span> <span class="n">Paxos</span><span class="p">{</span><span class="err">
@@ -694,51 +694,51 @@
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">LearnRequest</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">slot_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Número do slot que está sendo aprendido
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">int64</span> <span class="n">slot_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Slot number being learned
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="kd">message</span> <span class="nc">LearnResponse</span><span class="p">{</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">decided</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Indica se o slot foi decidido
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Command</span> <span class="n">command</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Comando associado ao slot, se decidido
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="kt">bool</span> <span class="n">decided</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Indicates if the slot was decided
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Command</span> <span class="n">command</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Command associated with the slot, if decided
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
   <button
     class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
+    title="Copy code"
   >
     <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
 <div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
   </button>
 </div>
 </div>
-<p>Quando um nó recebe um HeartBeat, é enviado junto o número do ultimo slot decidido pelo sistema e, caso seja maior que o que o nó tem no seu estado interno, ele executa <strong>Learn</strong> até sincronizar todo o seu estado.</p>
-<p>Essa sincronização também é feita durante a eleição de um novo líder caso necessário.</p>
-<h1>Conclusão</h1><p>A implementação desse projeto foi algo desafiador e que trouxe muito aprendizado sobre problemas de concorrência e sistemas distribuidos, além de possibilitar uma maior prática com Golang que é uma linguagem muito interessante para sistemas concorrentes e o protocolo de comunicação gRPC.</p>
-<p>O código para o projeto pode ser encontrado no nosso <a href="https://github.com/luizgustavojunqueira/KV-Store-Paxos?tab=readme-ov-file#key-value-store-with-paxos"target="_blank" rel="noopener">Repositório do GitHub<svg class="hx:inline hx:rtl:rotate-270 hx:align-baseline" height="1em" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<p>When a node receives a HeartBeat, the number of the last slot decided by the system is sent along, and if it&rsquo;s greater than what the node has in its internal state, it executes <strong>Learn</strong> until it synchronizes its entire state.</p>
+<p>This synchronization is also done during the election of a new leader if necessary.</p>
+<h1>Conclusion</h1><p>The implementation of this project was challenging and brought a lot of learning about concurrency problems and distributed systems, in addition to enabling greater practice with Golang, which is a very interesting language for concurrent systems and the gRPC communication protocol.</p>
+<p>The code for the project can be found in our <a href="https://github.com/luizgustavojunqueira/KV-Store-Paxos?tab=readme-ov-file#key-value-store-with-paxos"target="_blank" rel="noopener">GitHub Repository<svg class="hx:inline hx:rtl:rotate-270 hx:align-baseline" height="1em" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
  <path d="m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></a> junto com instruções de como executar todos os serviços envolvidos.</p>
+</svg></a> along with instructions on how to run all the services involved.</p>
         </div>
-    <div class="hx:mt-12 hx:mb-8 hx:block hx:text-xs hx:text-gray-500 hx:ltr:text-right hx:rtl:text-left hx:dark:text-gray-400">Atualizado por último em <time datetime="2025-09-29T19:46:45.000Z">Gwengolo 29, 2025</time></div><div class="hx:mb-8 hx:flex hx:items-center hx:border-t hx:pt-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-neutral-400 hx:dark:contrast-more:border-neutral-400 hx:print:hidden"><a
-        href="/blog/buildingablog/"
-        title="Construindo meu Blog"
+    <div class="hx:mt-12 hx:mb-8 hx:block hx:text-xs hx:text-gray-500 hx:ltr:text-right hx:rtl:text-left hx:dark:text-gray-400">Last updated on <time datetime="2025-09-28T13:14:54.000Z">September 28, 2025</time></div><div class="hx:mb-8 hx:flex hx:items-center hx:border-t hx:pt-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-neutral-400 hx:dark:contrast-more:border-neutral-400 hx:print:hidden"><a
+        href="/en/blog/buildingablog/"
+        title="Building my Blog"
         class="hx:flex hx:max-w-[50%] hx:items-center hx:gap-1 hx:py-4 hx:text-base hx:font-medium hx:text-gray-600 hx:transition-colors [word-break:break-word] hx:hover:text-primary-600 hx:dark:text-gray-300 hx:md:text-lg hx:ltr:pr-4 hx:rtl:pl-4"
-      ><svg class="hx:inline hx:h-5 hx:shrink-0 hx:ltr:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Construindo meu Blog</a><a
-        href="/blog/windowsvm/"
-        title="VM Windows no Linux"
+      ><svg class="hx:inline hx:h-5 hx:shrink-0 hx:ltr:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Building my Blog</a><a
+        href="/en/blog/windowsvm/"
+        title="Windows VM on Linux"
         class="hx:flex hx:max-w-[50%] hx:items-center hx:gap-1 hx:py-4 hx:text-base hx:font-medium hx:text-gray-600 hx:transition-colors [word-break:break-word] hx:hover:text-primary-600 hx:dark:text-gray-300 hx:md:text-lg hx:ltr:ml-auto hx:ltr:pl-4 hx:ltr:text-right hx:rtl:mr-auto hx:rtl:pr-4 hx:rtl:text-left"
-      >VM Windows no Linux<svg class="hx:inline hx:h-5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div></main>
+      >Windows VM on Linux<svg class="hx:inline hx:h-5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div></main>
     </article>
   </div>
 
       <footer class="hextra-footer hx:bg-gray-100 hx:pb-[env(safe-area-inset-bottom)] hx:dark:bg-neutral-900 hx:print:bg-transparent"><div class="hx:mx-auto hx:flex hx:gap-2 hx:py-2 hx:px-4 hextra-max-footer-width"><div class="hx:flex hx:justify-items-start ">
     <button
-      title="Mudar idioma"
+      title="Change language"
       data-state="closed"
       data-location=""
       class="hextra-language-switcher hx:cursor-pointer hx:rounded-md hx:text-left hx:font-medium hx:h-7 hx:px-2 hx:text-xs hx:text-gray-600 hx:transition-colors hx:dark:text-gray-400 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:grow"
       type="button"
-      aria-label="Mudar idioma"
+      aria-label="Change language"
     >
-      <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg><span>Português</span></div>
+      <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg><span>English</span></div>
     </button>
     <ul
       class="hextra-language-options hx:hidden hx:z-20 hx:max-h-64 hx:overflow-auto hx:rounded-md hx:ring-1 hx:ring-black/5 hx:bg-white hx:py-1 hx:text-sm hx:shadow-lg hx:dark:ring-white/20 hx:dark:bg-neutral-800"
@@ -750,7 +750,7 @@
           <a
             href="/en/blog/kvstore/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
-          >English</a>
+          >English<span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span></a>
         </li>
       
         
@@ -758,22 +758,22 @@
           <a
             href="/blog/kvstore/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
-          >Português<span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span></a>
+          >Português</a>
         </li>
       </ul>
   </div><div class="hx:flex hx:justify-items-start hx:group" data-theme="light">
   <button
-    title="Mudar tema"
+    title="Change theme"
     data-state="closed"
     data-location="bottom"
     class="hextra-theme-toggle hx:cursor-pointer hx:rounded-md hx:text-left hx:font-medium hx:h-7 hx:px-2 hx:text-xs hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:font-medium hx:text-gray-600 hx:transition-colors hx:dark:text-gray-400 hx:grow"
     type="button"
-    aria-label="Mudar tema"
+    aria-label="Change theme"
   >
-    <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden">Claro</span><svg height=12 class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden">Escuro</span><svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="currentColor">
+    <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden">Light</span><svg height=12 class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden">Dark</span><svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="currentColor">
   <path d="M 11.996094,2 C 6.4986225,2.0192368 2.03125,6.5024993 2.03125,12 c 0,5.497501 4.4673725,9.980763 9.964844,10 H 12 12.0039 c 5.497471,-0.01924 9.964844,-4.502499 9.964844,-10 0,-5.4975007 -4.467373,-9.9807632 -9.964844,-10 H 12 Z M 12,4 c 4.417218,0.017598 7.96875,3.5822356 7.96875,8 0,4.417764 -3.551532,7.982402 -7.96875,8 z" />
 </svg>
-<span class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden">Sistema</span></div>
+<span class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden">System</span></div>
   </button>
   <ul
     class="hextra-theme-toggle-options hx:hidden hx:z-20 hx:max-h-64 hx:overflow-auto hx:rounded-md hx:ring-1 hx:ring-black/5 hx:bg-white hx:py-1 hx:text-sm hx:shadow-lg hx:dark:ring-white/20 hx:dark:bg-neutral-800"
@@ -785,7 +785,7 @@
         data-item="light"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Claro
+        Light
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -794,7 +794,7 @@
         data-item="dark"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Escuro
+        Dark
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -803,7 +803,7 @@
         data-item="system"
         class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
       >
-        Sistema
+        System
          <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
       </p>
     </li>
@@ -813,11 +813,11 @@
     >
       <div class="hx:flex hx:w-full hx:flex-col hx:items-center hx:sm:items-start"><div class="hx:font-semibold"><a class="hx:flex hx:text-sm hx:items-center hx:gap-1 hx:text-current" target="_blank" rel="noopener noreferrer" title="Hextra GitHub Homepage" href="https://github.com/imfing/hextra">
     <span>Powered by Hextra<svg height=1em class="hx:inline-block hx:ltr:ml-1 hx:rtl:mr-1 hx:align-[-2.5px]" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="m 105.50024,22.224647 c -9.59169,-5.537563 -21.40871,-5.537563 -31.000093,0 L 39.054693,42.689119 C 29.463353,48.226675 23.55484,58.460531 23.55484,69.535642 v 40.928918 c 0,11.07542 5.908513,21.3092 15.499853,26.84652 l 35.445453,20.46446 c 9.591313,5.53732 21.408404,5.53732 31.000094,0 l 35.44507,-20.46446 c 9.59131,-5.53732 15.49985,-15.7711 15.49985,-26.84652 V 69.535642 c 0,-11.075111 -5.90854,-21.308967 -15.49985,-26.846523 z M 34.112797,85.737639 c -1.384445,2.397827 -1.384445,5.352099 0,7.749927 l 24.781554,42.922974 c 1.38437,2.39783 3.942853,3.87496 6.711592,3.87496 h 49.563107 c 2.76905,0 5.3273,-1.47713 6.71144,-3.87496 l 24.78194,-42.922974 c 1.38414,-2.397828 1.38414,-5.3521 0,-7.749927 L 121.88049,42.814746 c -1.38414,-2.397828 -3.94239,-3.874964 -6.71144,-3.874964 H 65.605944 c -2.768739,0 -5.327223,1.477059 -6.711592,3.874964 z" style="stroke-width:0.774993" /></svg></span>
-  </a></div><div class="hx:mt-6 hx:text-xs">© 2025 Luiz Gustavo Junqueira.</div></div>
+  </a></div><div class="hx:mt-6 hx:text-xs">© 2025 Hextra Project.</div></div>
     </div></footer>
     
     <script defer src="/js/main.js" integrity=""></script>
 <script defer src="/js/flexsearch.9f5b5908f93ae86f1ecd4b043b799f580c2d1654e703dd9357d568ac41b2547a.js" integrity="sha256-n1tZCPk66G8ezUsEO3mfWAwtFlTnA92TV9VorEGyVHo=" crossorigin="anonymous"></script>
-        <script defer src="/br.search.js" integrity=""></script>
+        <script defer src="/en.search.js" integrity=""></script>
   </body>
 </html>

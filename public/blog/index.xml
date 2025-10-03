@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Luiz Junqueira – Blog Posts</title>
-    <link>http://localhost:1313/blog/</link>
-    <description>Recent content in Blog Posts on Luiz Junqueira</description>
+    <title>Luiz Gustavo Junqueira – Blog Posts</title>
+    <link>//localhost:1313/blog/</link>
+    <description>Recent content in Blog Posts on Luiz Gustavo Junqueira</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>pt-BR</language>
-    <lastBuildDate>Sun, 28 Sep 2025 13:14:54 -0400</lastBuildDate>
+    <language>br</language>
+    <lastBuildDate>Fri, 03 Oct 2025 07:20:59 -0400</lastBuildDate>
     
-	  <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="//localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,11 +16,311 @@
     
     
     <item>
+      <title>VM Windows no Linux</title>
+      <link>//localhost:1313/blog/windowsvm/</link>
+      <pubDate>Fri, 03 Oct 2025 07:20:59 -0400</pubDate>
+      
+      <guid>//localhost:1313/blog/windowsvm/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Neste post, vou compartilhar e deixar registrado para meu uso no futuro
+o processo de criação de uma máquina virtual Windows 11 no Linux usando QEMU/KVM.&lt;/p&gt;
+&lt;h2&gt;Por que?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;por-que&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#por-que&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Bom, se você assim como eu, prefere usar alguma distro Linux como sistema principal ou, assim como eu, não gosta do Windows, mas precisa usar o Windows para algumas tarefas específicas, como trabalho, ou alguns softwares que só rodam no Windows, ou jogos que só rodam no Windows (apesar disso não ser mais tão real assim), ou até mesmo para desenvolvimento de software que precisa ser testado no Windows, uma máquina virtual é uma ótima solução.&lt;/p&gt;
+&lt;h2&gt;Requisitos&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;requisitos&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#requisitos&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Um computador com Linux instalado (de preferência uma distro que suporte KVM, como Ubuntu, Fedora, Arch, etc).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;QEMU/KVM&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;qemukvm&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#qemukvm&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Como sou usuário de Arch Linux, vou usar o gerenciador de pacotes &lt;code&gt;pacman&lt;/code&gt; para instalar os pacotes necessários. Se você estiver usando outra distro, adapte os comandos conforme necessário.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo pacman -S qemu-full libvirt virt-manager virt-viewer dnsmasq&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;qemu-full: O emulador de hardware e hypervisor.&lt;/li&gt;
+&lt;li&gt;libvirt: Biblioteca para gerenciar máquinas virtuais.&lt;/li&gt;
+&lt;li&gt;virt-manager: Interface gráfica para gerenciar máquinas virtuais.&lt;/li&gt;
+&lt;li&gt;virt-viewer: Ferramenta para visualizar máquinas virtuais.&lt;/li&gt;
+&lt;li&gt;dnsmasq: Servidor DHCP e DNS leve.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Windows 11 ISO&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;windows-11-iso&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#windows-11-iso&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Você pode baixar a ISO do Windows 11 diretamente do site da Microsoft: &lt;a href=&#34;https://www.microsoft.com/software-download/windows11&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Download Windows 11&lt;svg class=&#34;hx:inline hx:rtl:rotate-270 hx:align-baseline&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; viewBox=&#34;0 0 24 24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+ &lt;path d=&#34;m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;/&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;VirtIO Drivers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;virtio-drivers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#virtio-drivers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Para que a integração entre o Windows e o QEMU/KVM funcione corretamente, você precisará dos drivers VirtIO.&lt;/p&gt;
+&lt;p&gt;Isso pois o Windows 11 não reconhece nativamente os dispositivos virtuais criados pelo QEMU/KVM, como o disco e a placa de rede.&lt;/p&gt;
+&lt;p&gt;Além disso, por meio desses drivers, você terá melhor desempenho com performance quase nativa, visto que o Windows vai saber que está rodando em uma máquina virtual e vai otimizar o uso dos recursos.&lt;/p&gt;
+&lt;p&gt;Para instalar no Arch Linux, você pode usar o seguinte comando:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo pacman -s virtio-win&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ou você pode baixar diretamente do site oficial: &lt;a href=&#34;https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VirtIO Drivers&lt;svg class=&#34;hx:inline hx:rtl:rotate-270 hx:align-baseline&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; viewBox=&#34;0 0 24 24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+ &lt;path d=&#34;m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;/&gt;
+&lt;/svg&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Configuração do Host&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configuração-do-host&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configura%c3%a7%c3%a3o-do-host&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Antes de começãr a configurar a máquina virtual, primeiro vamos configurar o libvirt para permitir que o usuário atual possa gerenciar as máquinas virtuais sem precisar de privilégios de superusuário.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo usermod -aG libvirt &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;whoami&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;newgrp libvirt&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Agora, vamos iniciar o serviço do libvirt e habilitá-lo para iniciar automaticamente na inicialização do sistema:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now libvirtd&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;Configuração do libvirt&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configuração-do-libvirt&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configura%c3%a7%c3%a3o-do-libvirt&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Durante a instalação da VM na minha máquina, tive alguns problemas com a questão de acesso a rede e também de permissões de usuário, então tive que fazer as seguintes alterações:&lt;/p&gt;
+&lt;p&gt;Em &lt;code&gt;/etc/libvirt/qemu.conf&lt;/code&gt;, descomente a linha &lt;code&gt;user&lt;/code&gt; e altere o valor para o seu usuário&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;...
+
+# The user for QEMU processes run by the system instance. It can be
+# specified as a user name or as a user id. The qemu driver will try to
+# parse this value first as a name and then, if the name doesn&amp;#39;t exist,
+# as a user id.
+#
+# Since a sequence of digits is a valid user name, a leading plus sign
+# can be used to ensure that a user id will not be interpreted as a user
+# name.
+#
+# Some examples of valid values are:
+#
+#       user = &amp;#34;qemu&amp;#34;   # A user named &amp;#34;qemu&amp;#34;
+#       user = &amp;#34;&amp;#43;0&amp;#34;     # Super user (uid=0)
+#       user = &amp;#34;100&amp;#34;    # A user named &amp;#34;100&amp;#34; or a user with uid=100
+#
+user = &amp;#34;seu_usuario&amp;#34;
+
+...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Além disso, precisei mudar o backend do firewall para usar iptables, em &lt;code&gt;/etc/libvirt/network.conf&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;...
+
+# Master configuration file for the network driver.
+# All settings described here are optional - if omitted, sensible
+# defaults are used.
+
+# firewall_backend:
+#
+#   determines which subsystem to use to setup firewall packet
+#   filtering rules for virtual networks.
+#
+#   Supported settings:
+#
+#     iptables - use iptables commands to construct the firewall
+#     nftables - use nft commands to construct the firewall
+#
+#   If firewall_backend isn&amp;#39;t configured, libvirt will choose the
+#   first available backend from the following list:
+#
+#     [nftables, iptables]
+#
+#   If no backend is available on the host, then the network driver
+#   will fail to start, and an error will be logged.
+#
+#   (NB: switching from one backend to another while there are active
+#   virtual networks *is* supported. The change will take place the
+#   next time that libvirtd/virtnetworkd is restarted - all existing
+#   virtual networks will have their old firewalls removed, and then
+#   reloaded using the new backend.)
+#
+firewall_backend = &amp;#34;iptables&amp;#34;
+...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Caso você não tenha o &lt;code&gt;iptables&lt;/code&gt; instalado, você pode instalar com o seguinte comando:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo pacman -S iptables&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;Configuração da Máquina Virtual&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configuração-da-máquina-virtual&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configura%c3%a7%c3%a3o-da-m%c3%a1quina-virtual&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Agora vamos para a parte interessante, que é configurar a instalar a máquina virtual.&lt;/p&gt;
+&lt;p&gt;Uma vez que tenha tudo instalado e confgurado, você pode iniciar o &lt;code&gt;virt-manager&lt;/code&gt; (Gerenciador de Máquinas Virtuais) a partir do menu do seu sistema ou digitando &lt;code&gt;virt-manager&lt;/code&gt; no terminal ou pesquisando no seu launcher favorito.&lt;/p&gt;
+&lt;p&gt;Se tudo deu certo, você verá uma interface assim:&lt;/p&gt;
+&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/blog_windowsvm_virt-manager.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Agora, clique no ícone de criar uma nova máquina virtual e siga os seguintes passos:&lt;/p&gt;
+&lt;div class=&#34;hextra-steps hx:ml-4 hx:mb-12 hx:ltr:border-l hx:rtl:border-r hx:border-gray-200 hx:ltr:pl-6 hx:rtl:pr-6 hx:dark:border-neutral-800 [counter-reset:step]&#34;&gt;
+&lt;h3&gt;Criar máquina Virtual&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;criar-máquina-virtual&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#criar-m%c3%a1quina-virtual&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-createvm.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Aqui, mantenha as opções padrão e clique em &amp;ldquo;Forward&amp;rdquo;.&lt;/p&gt;
+&lt;h3&gt;Selecionar ISO&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;selecionar-iso&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#selecionar-iso&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-selectiso.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Nessa segunda tela, encontre a ISO do Windows 11 que você baixou anteriormente clicando em &amp;ldquo;Browse&amp;rdquo; e depois em &amp;ldquo;Browse Local&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Após selecionar a ISO, clique em &amp;ldquo;Forward&amp;rdquo;.&lt;/p&gt;
+&lt;h3&gt;Configurar Memória e CPU&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configurar-memória-e-cpu&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configurar-mem%c3%b3ria-e-cpu&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-configmem.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Aqui escolha a quantidade de memória RAM e CPU que você quer alocar para a máquina virtual.&lt;/p&gt;
+&lt;p&gt;Recomendo no mínimo 8GB de RAM e 4 núcleos de CPU para uma boa performance.&lt;/p&gt;
+&lt;p&gt;Depois de configurar, clique em &amp;ldquo;Forward&amp;rdquo;.&lt;/p&gt;
+&lt;h3&gt;Configurar Disco Rígido&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configurar-disco-rígido&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configurar-disco-r%c3%adgido&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-configdisk.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Aqui você pode escolher o tamanho do disco rígido virtual. Recomendo pelo menos 64GB para o Windows 11, mas se você planeja instalar muitos programas, considere aumentar esse valor, principalmente se for usar para jogos.&lt;/p&gt;
+&lt;p&gt;Também há a possibilidadde de usar um disco inteiro existente com acesso direto, via Passthrough, mas isso é um assunto para outro post e é mais avançado.&lt;/p&gt;
+&lt;h3&gt;Finalizar Configuração&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;finalizar-configuração&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#finalizar-configura%c3%a7%c3%a3o&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-configfinish.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Agora de um nome para a máquina virtual e marque a opção &amp;ldquo;Customize configuration before install&amp;rdquo; para fazer algumas configurações adicionais.&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2&gt;Configurações Adicionais&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configurações-adicionais&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configura%c3%a7%c3%b5es-adicionais&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;No menu Overview, mude o firmware para UEFI x86_64: /usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd&lt;/p&gt;
+&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-overview.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Caso você não tenha o OVMF instalado, você pode instalar com o seguinte comando:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo pacman -S edk2-ovmf&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Clique em &amp;ldquo;Apply&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Agora vamos adicionar os drivers VirtIO que você baixou anteriormente.&lt;/p&gt;
+&lt;p&gt;Vá em &lt;code&gt;Add Hardware&lt;/code&gt; &amp;gt; &lt;code&gt;Storage&lt;/code&gt; &amp;gt; &lt;code&gt;Select or create custom storage&lt;/code&gt; &amp;gt; &lt;code&gt;Browse Local&lt;/code&gt; e selecione o arquivo ISO dos drivers VirtIO. Depois mude o device type para &lt;code&gt;CDROM device&lt;/code&gt; e clique em &lt;code&gt;Finish&lt;/code&gt;.&lt;/p&gt;
+&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-virtiodisk.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Também é interessante trocar o &lt;code&gt;bus type&lt;/code&gt; do disco rígido para &lt;code&gt;VirtIO&lt;/code&gt; para melhorar a performance. Vá em &lt;code&gt;SATA Disk 1&lt;/code&gt; e mude o &lt;code&gt;bus type&lt;/code&gt; para &lt;code&gt;VirtIO&lt;/code&gt;. Clique em &lt;code&gt;Apply&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Por último, vamos fazer a emulação do chip TPM, que é necessário para o Windows 11.&lt;/p&gt;
+&lt;p&gt;Deve ter por padrão um menu escrito &lt;code&gt;TPM vNone&lt;/code&gt;. Vá nele, abra o menu de opções avançadas e selecione no dropdown de versão &lt;code&gt;2.0&lt;/code&gt;. Depois clique em &lt;code&gt;Apply&lt;/code&gt;.&lt;/p&gt;
+&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/virt-manager-tpm.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Agora pode iniciar a instalação clicando em &lt;code&gt;Begin Installation&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Instalação do Windows 11&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;instalação-do-windows-11&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#instala%c3%a7%c3%a3o-do-windows-11&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Ao iniciar a instalação, você verá na tela escrito para apertar qualquer tecla para iniciar a partir do CD/DVD. Aperte qualquer tecla e será redirecionado para a tela de instalação do Windows.&lt;/p&gt;
+&lt;p&gt;Faça a configuração inicial de idioma, teclado e clique em &lt;code&gt;Next&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Na aba de &lt;code&gt;Product Key&lt;/code&gt; caso você tenha uma chave, insira ela aqui. Caso contrário, clique em &lt;code&gt;I don&#39;t have a product key&lt;/code&gt; para continuar a instalação sem a chave.&lt;/p&gt;
+&lt;p&gt;Na seleção de imagem selecione &lt;code&gt;Windows 11 Home&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Instalação dos Drivers VirtIO&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;instalação-dos-drivers-virtio&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#instala%c3%a7%c3%a3o-dos-drivers-virtio&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Na tela de seleção de disco, como escolhemos usar o &lt;code&gt;bus type&lt;/code&gt; virtio, o Windows não reconhece o disco rígido, então precisamos carregar os drivers VirtIO.&lt;/p&gt;
+&lt;p&gt;Caso apareça o disco (no caso de você ter mantido SATA) o disco vai aparecer, mas ainda assim, instale os drivers pois são utilizados para outros dispositivos também.&lt;/p&gt;
+&lt;p&gt;Para isso, vá em &lt;code&gt;Load Driver&lt;/code&gt;.&lt;/p&gt;
+&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/windows-install-loaddriver.png&#34; alt=&#34;Virt-Manager&#34; /&gt;
+&lt;p&gt;Abra o drive de CD-ROM e selecione a pasta &lt;code&gt;viostor\w11\amd64&lt;/code&gt; e clique em &lt;code&gt;OK&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Desabilite a opção de mostrar apenas drivers compatíveis e clique &lt;code&gt;install&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Depois vá novamente em Load Driver &amp;gt; Browse e selecione a pasta &lt;code&gt;NetKVM\w11\amd64&lt;/code&gt; e clique em &lt;code&gt;OK&lt;/code&gt; e instale.&lt;/p&gt;
+&lt;p&gt;Agora pode clicar em &lt;code&gt;Next&lt;/code&gt; e continuar a instalação normalmente.&lt;/p&gt;
+&lt;p&gt;Pode ser que o processo demore um pouco, então tenha paciência. Na minha máquina demorou cerca de 15 minutos para completar ir para a parte de configuração inicial do Windows.&lt;/p&gt;
+&lt;p&gt;Nessa parte, siga os passos para configurar o Windows como preferir.&lt;/p&gt;
+&lt;p&gt;Se aparecer uma tela de erro dizendo que não é possível conectar a internet, provavelmente o driver faltou alguma configuração relacionada a rede mencionada anteriormente, então volte e veja se está tudo certo.&lt;/p&gt;
+&lt;p&gt;Caso tenha ido para uma tela de verifiação de atualizações, muito provavelmente deu tudo certo, e é só esperar mais um pouco.&lt;/p&gt;
+&lt;p&gt;Como a Microsoft é chata, vai pedir para você logar em uma conta Microsoft ou criar uma e até o momento não descobri se é possível pular essa etapa, então crie uma conta Microsoft ou use uma que você já tenha.&lt;/p&gt;
+&lt;h2&gt;Configuração Pós-Instalação&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configuração-pós-instalação&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configura%c3%a7%c3%a3o-p%c3%b3s-instala%c3%a7%c3%a3o&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Uma vez finalmente com o windows instalado, vamos fazer algumas configurações adicionais para melhorar a performance e a integração com o Linux.&lt;/p&gt;
+&lt;p&gt;Abra o explorador de arquivos e vá até o drive de CD-ROM onde estão os drivers VirtIO.&lt;/p&gt;
+&lt;p&gt;Execute o instalador do &lt;code&gt;virtio-win-gt-x64.msi&lt;/code&gt; e siga os passos para instalar todos os drivers.&lt;/p&gt;
+&lt;p&gt;Depois instale o &lt;code&gt;virtio-win-guest-tools&lt;/code&gt; que vai instalar o QEMU Guest Agent, que é um serviço que permite a comunicação entre o host e a máquina virtual, permitindo funcionalidades como desligamento seguro, sincronização de tempo, etc.&lt;/p&gt;
+&lt;p&gt;Uma vez instalados, você pode ir no menu do virt-manager &lt;code&gt;View&lt;/code&gt; -&amp;gt; &lt;code&gt;Scale to Display&lt;/code&gt; e ativar &lt;code&gt;Auto resize VM with window&lt;/code&gt; para que a resolução da máquina virtual se ajuste automaticamente ao tamanho da janela.&lt;/p&gt;
+&lt;p&gt;Agora pode desligar a máquina para que possamos fazer mais algumas configurações.&lt;/p&gt;
+&lt;h3&gt;Configurações no Host&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;configurações-no-host&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#configura%c3%a7%c3%b5es-no-host&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Agora que já temos o Windows instalado, vamos fazer algumas configurações adicionais no host para melhorar a performance.&lt;/p&gt;
+&lt;p&gt;Primeiramente, podemos remover CD-ROM com os drivers VirtIO, já que não precisamos mais deles. Para isso, selecione o CD-ROM na lista de hardware e clique em &lt;code&gt;Remove&lt;/code&gt;. Provavelmente é o SATA CDROM 2.&lt;/p&gt;
+&lt;p&gt;Caso você queria usar uma camera, como no meu caso, estou fazendo a instalação em um notebook, para adicionar a camera a VM, basta ir em &lt;code&gt;Add Hardware&lt;/code&gt; &amp;gt; &lt;code&gt;USB Host Device&lt;/code&gt; e encontrar o seu dispositivo e adicioná-lo.&lt;/p&gt;
+&lt;p&gt;Além disso, pelo menos no meu notebook, tive problemas com entrada de audio, então tive que fazer a seguinte configuração na aba &lt;code&gt;Overview&lt;/code&gt; editando manualmente o XML de configuração, trocando a parte de audio por essa configuração:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-XML&#34; data-lang=&#34;XML&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;sound&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;model=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ich9&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;codec&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;duplex&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;audio&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;address&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;pci&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;domain=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;0x0000&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;bus=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;0x00&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;slot=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;0x1b&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;function=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;0x0&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/sound&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;audio&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;pipewire&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;runtimeDir=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/run/user/1000&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;streamName=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;VM-Microphone&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;latency=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;100&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;output&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;streamName=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;VM-Audio&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;latency=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;15000&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/audio&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copiar código&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Como uso pipewire no meu sistema, essa configuração funciona perfeitamente, mas se você usa pulseaudio, pode tentar mudar o type para &lt;code&gt;pulseaudio&lt;/code&gt; e ver se funciona.&lt;/p&gt;
+&lt;p&gt;Para definir o &lt;code&gt;name&lt;/code&gt; do input, você pode usar o comando &lt;code&gt;pactl list sources short&lt;/code&gt; para listar as fontes de audio disponíveis e encontrar a que corresponde ao seu microfone. (No caso eu fui testando até achar a correta).&lt;/p&gt;
+&lt;p&gt;Depois de fazer essas alterações, clique em &lt;code&gt;Apply&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Agora você deve ter uma máquina virtual Windows 11 rodando no seu Linux com QEMU/KVM, com boa performance e integração.&lt;/p&gt;
+&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/WindowsVM/blog_windowsvm_windows11.png&#34; alt=&#34;Windows 11&#34; /&gt;
+&lt;h2&gt;Considerações Finais&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;considerações-finais&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#considera%c3%a7%c3%b5es-finais&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Bom, a ideia desse post era deixar registrado o processo que segui para instalar o Windows 11 no Linux usando QEMU/KVM, para que eu possa consultar no futuro caso precise fazer novamente e para deixar disponível para quem mais possa precisar visto que eu mesmo tive dificuldades para encontrar um guia completo e atualizado sobre o assunto.&lt;/p&gt;
+&lt;p&gt;No futuro pretendo fazer mais posts sobre configurações avançadas, como passthrough de GPU, USB, CPU pinning, etc.&lt;/p&gt;
+&lt;p&gt;Além disso, quero deixar claro que esse processo pode variar dependendo do hardware e da distribuição Linux que você está usando, então é sempre bom consultar a documentação oficial do QEMU/KVM e do VirtIO para mais detalhes.&lt;/p&gt;
+&lt;p&gt;Também, obviamente, como é uma máquina virtual, não espere performance igual a de um sistema nativo, mas com as configurações corretas, a performance pode ser muito boa e suficiente para a maioria das tarefas.&lt;/p&gt;
+&lt;p&gt;No meu caso, tenho uma máquina relativamente potente, com a seguinte configuração:&lt;/p&gt;
+&lt;img src=&#34;https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/my_hardware.png&#34; alt=&#34;Hardware&#34; /&gt;
+&lt;p&gt;Então consigo deixar 16GB de RAM e 8 núcleos de CPU para a máquina virtual, o que é mais do que suficiente para o meu uso, enquanto ainda consigo usar o Linux normalmente.&lt;/p&gt;
+      </description>
+    </item>
+    
+    <item>
       <title>KVStore</title>
-      <link>http://localhost:1313/blog/kvstore/</link>
+      <link>//localhost:1313/blog/kvstore/</link>
       <pubDate>Sun, 28 Sep 2025 13:14:54 -0400</pubDate>
       
-      <guid>http://localhost:1313/blog/kvstore/</guid>
+      <guid>//localhost:1313/blog/kvstore/</guid>
       <description>
         
         
@@ -119,7 +419,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
@@ -165,7 +465,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
@@ -253,7 +553,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
@@ -275,7 +575,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
@@ -301,7 +601,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
@@ -311,39 +611,45 @@
 &lt;p&gt;Quando um nó recebe um HeartBeat, é enviado junto o número do ultimo slot decidido pelo sistema e, caso seja maior que o que o nó tem no seu estado interno, ele executa &lt;strong&gt;Learn&lt;/strong&gt; até sincronizar todo o seu estado.&lt;/p&gt;
 &lt;p&gt;Essa sincronização também é feita durante a eleição de um novo líder caso necessário.&lt;/p&gt;
 &lt;h1&gt;Conclusão&lt;/h1&gt;&lt;p&gt;A implementação desse projeto foi algo desafiador e que trouxe muito aprendizado sobre problemas de concorrência e sistemas distribuidos, além de possibilitar uma maior prática com Golang que é uma linguagem muito interessante para sistemas concorrentes e o protocolo de comunicação gRPC.&lt;/p&gt;
-&lt;p&gt;O código para o projeto pode ser encontrado no nosso &lt;a href=&#34;https://github.com/luizgustavojunqueira/KV-Store-Paxos?tab=readme-ov-file#key-value-store-with-paxos&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Repositório do GitHub&lt;/a&gt; junto com instruções de como executar todos os serviços envolvidos.&lt;/p&gt;
+&lt;p&gt;O código para o projeto pode ser encontrado no nosso &lt;a href=&#34;https://github.com/luizgustavojunqueira/KV-Store-Paxos?tab=readme-ov-file#key-value-store-with-paxos&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Repositório do GitHub&lt;svg class=&#34;hx:inline hx:rtl:rotate-270 hx:align-baseline&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; viewBox=&#34;0 0 24 24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+ &lt;path d=&#34;m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;/&gt;
+&lt;/svg&gt;&lt;/a&gt; junto com instruções de como executar todos os serviços envolvidos.&lt;/p&gt;
       </description>
     </item>
     
     <item>
-      <title>Building my Blog</title>
-      <link>http://localhost:1313/blog/buildingablog/</link>
+      <title>Construindo meu Blog</title>
+      <link>//localhost:1313/blog/buildingablog/</link>
       <pubDate>Sun, 28 Sep 2025 12:59:28 -0400</pubDate>
       
-      <guid>http://localhost:1313/blog/buildingablog/</guid>
+      <guid>//localhost:1313/blog/buildingablog/</guid>
       <description>
         
         
-        &lt;p&gt;In this post, I&amp;rsquo;m going to talk in more depth about why and how I built this blog.&lt;/p&gt;
-&lt;h1&gt;How it Started&lt;/h1&gt;&lt;p&gt;Many months ago, I started watching a YouTuber named &lt;strong&gt;ThePrimeAgen&lt;/strong&gt;. Every now and then, he talks about Golang and expresses his enthusiasm for the language. Intrigued by his insights, I decided to give Golang a try to see what it was all about.&lt;/p&gt;
-&lt;p&gt;I began experimenting with Golang about six months ago, solving some &lt;a href=&#34;https://judge.beecrowd.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BeeCrowd&lt;/a&gt; problems just to get the hang of it. Soon after, I built a few simple REST API servers, as Golang is very well-suited for this kind of software.&lt;/p&gt;
-&lt;p&gt;But why create a blog?&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m a big fan of tech blogs, and since most of my knowledge has come from reading them, I thought it would be cool to have my own. As I mentioned in my &lt;a href=&#34;https://blog.luizgustavojunqueira.com/post/my-blog#why-i-made-this-blog&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;previous post&lt;/a&gt;, I also wanted to test my skills, deploy an application beyond localhost, and improve my writing.&lt;/p&gt;
-&lt;h2&gt;Technologies&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;technologies&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#technologies&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;For building this blog, I decided to use only technologies I had never used before, so I chose the GOTTH stack:&lt;/p&gt;
+        &lt;p&gt;Neste post, vou falar mais profundamente sobre por que e como construí este blog.&lt;/p&gt;
+&lt;h1&gt;Como Começou&lt;/h1&gt;&lt;p&gt;Há muitos meses, comecei a assistir um YouTuber chamado &lt;strong&gt;ThePrimeAgen&lt;/strong&gt;. De vez em quando, ele fala sobre Golang e expressa seu entusiasmo pela linguagem. Intrigado por suas percepções, decidi dar uma chance ao Golang para ver do que se tratava.&lt;/p&gt;
+&lt;p&gt;Comecei a experimentar com Golang há cerca de seis meses, resolvendo alguns problemas do &lt;a href=&#34;https://judge.beecrowd.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BeeCrowd&lt;svg class=&#34;hx:inline hx:rtl:rotate-270 hx:align-baseline&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; viewBox=&#34;0 0 24 24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+ &lt;path d=&#34;m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;/&gt;
+&lt;/svg&gt;&lt;/a&gt; apenas para pegar o jeito. Logo depois, construí alguns servidores REST API simples, já que Golang é muito adequado para esse tipo de software.&lt;/p&gt;
+&lt;p&gt;Mas por que criar um blog?&lt;/p&gt;
+&lt;p&gt;Sou um grande fã de blogs de tecnologia e, como a maior parte do meu conhecimento veio da leitura deles, achei que seria legal ter o meu próprio. Como mencionei em meu &lt;a href=&#34;https://blog.luizgustavojunqueira.com/post/my-blog#why-i-made-this-blog&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;post anterior&lt;svg class=&#34;hx:inline hx:rtl:rotate-270 hx:align-baseline&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; viewBox=&#34;0 0 24 24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+ &lt;path d=&#34;m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;/&gt;
+&lt;/svg&gt;&lt;/a&gt;, também queria testar minhas habilidades, implantar uma aplicação além do localhost e melhorar minha escrita.&lt;/p&gt;
+&lt;h2&gt;Tecnologias&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tecnologias&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tecnologias&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Para construir este blog, decidi usar apenas tecnologias que nunca havia usado antes, então escolhi a stack GOTTH:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Golang&lt;/strong&gt;: to serve the web app&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Templ&lt;/strong&gt;: for HTML templating&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;TailwindCSS&lt;/strong&gt;: for styling and beautiful design&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;HTMX&lt;/strong&gt;: for better interactivity and navigation&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;AlpineJS&lt;/strong&gt;: for interactive animations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Golang&lt;/strong&gt;: para servir a aplicação web&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Templ&lt;/strong&gt;: para templates HTML&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TailwindCSS&lt;/strong&gt;: para estilização e design bonito&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTMX&lt;/strong&gt;: para melhor interatividade e navegação&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AlpineJS&lt;/strong&gt;: para animações interativas&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I also used PostgreSQL as the database, though I plan to switch to SQLite in the future.&lt;/p&gt;
-&lt;h2&gt;How it works&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;how-it-works&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#how-it-works&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;The Backend&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-backend&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#the-backend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I developed the backend as a package so that it could be reused by anyone who wants a simple blog without much hassle. Currently, the only customization options available are for the blog title, page title, and admin user.&lt;/p&gt;
-&lt;p&gt;I plan to add more customization options — such as color schemes and layout adjustments — in the future once I address other priorities.&lt;/p&gt;
-&lt;p&gt;The package is named Blogo (a blend of &amp;ldquo;Blog&amp;rdquo; and &amp;ldquo;Go&amp;rdquo;) and requires the following configuration:&lt;/p&gt;
+&lt;p&gt;Também usei PostgreSQL como banco de dados, embora planeje mudar para SQLite no futuro.&lt;/p&gt;
+&lt;h2&gt;Como Funciona&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;como-funciona&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#como-funciona&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;O Backend&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;o-backend&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#o-backend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Desenvolvi o backend como um pacote para que pudesse ser reutilizado por qualquer pessoa que queira um blog simples sem muito trabalho. Atualmente, as únicas opções de customização disponíveis são para o título do blog, título da página e usuário administrador.&lt;/p&gt;
+&lt;p&gt;Planejo adicionar mais opções de customização — como esquemas de cores e ajustes de layout — no futuro, uma vez que eu atenda outras prioridades.&lt;/p&gt;
+&lt;p&gt;O pacote se chama Blogo (uma mistura de &amp;ldquo;Blog&amp;rdquo; e &amp;ldquo;Go&amp;rdquo;) e requer a seguinte configuração:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;BlogoConfig&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -358,42 +664,44 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;You can run the server with:&lt;/p&gt;
+&lt;p&gt;Você pode executar o servidor com:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;blog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;A more detailed example is available in my &lt;a href=&#34;https://github.com/luizgustavojunqueira/Blogo/blob/main/cmd/blog/main.go&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;repo&lt;/a&gt;, where you can see my personal blog configuration.&lt;/p&gt;
+&lt;p&gt;Um exemplo mais detalhado está disponível no meu &lt;a href=&#34;https://github.com/luizgustavojunqueira/Blogo/blob/main/cmd/blog/main.go&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;repositório&lt;svg class=&#34;hx:inline hx:rtl:rotate-270 hx:align-baseline&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; viewBox=&#34;0 0 24 24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+ &lt;path d=&#34;m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;/&gt;
+&lt;/svg&gt;&lt;/a&gt;, onde você pode ver a configuração do meu blog pessoal.&lt;/p&gt;
 &lt;h4&gt;PostHandler&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;posthandler&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#posthandler&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The server consists of a PostHandler and an AuthHandler. The authentication part is straightforward, so I&amp;rsquo;ll focus on the PostHandler, which comprises seven functions to manage posts:&lt;/p&gt;
+    &lt;a href=&#34;#posthandler&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;O servidor consiste em um PostHandler e um AuthHandler. A parte de autenticação é direta, então vou focar no PostHandler, que compreende sete funções para gerenciar posts:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;GetPosts&lt;/strong&gt;: Renders a list of post cards as HTML using a Templ template.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ViewPost&lt;/strong&gt;: Renders the full post.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;DeletePost&lt;/strong&gt;: Deletes the specified post.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Editor&lt;/strong&gt;: Renders a simple editor where I can input the post title, slug, description, and Markdown content (it&amp;rsquo;s pretty basic at the moment, so no images).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Edit&lt;/strong&gt;: Edits an existing post.
-&lt;strong&gt;CreatePost&lt;/strong&gt;: Generates the table of contents, converts the Markdown content into HTML, and saves the post.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ParseMarkdown&lt;/strong&gt;: Similar to CreatePost but returns the HTML content instead—this is used for live reloading in the editor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GetPosts&lt;/strong&gt;: Renderiza uma lista de cards de posts como HTML usando um template Templ.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ViewPost&lt;/strong&gt;: Renderiza o post completo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeletePost&lt;/strong&gt;: Deleta o post especificado.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Editor&lt;/strong&gt;: Renderiza um editor simples onde posso inserir o título do post, slug, descrição e conteúdo em Markdown (é bem básico no momento, então sem imagens).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Edit&lt;/strong&gt;: Edita um post existente.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CreatePost&lt;/strong&gt;: Gera o índice, converte o conteúdo Markdown em HTML e salva o post.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ParseMarkdown&lt;/strong&gt;: Similar ao CreatePost mas retorna o conteúdo HTML — isso é usado para recarregamento ao vivo no editor.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;The Frontend&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-frontend&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#the-frontend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;As mentioned earlier, the frontend is essentially pure HTML with a small amount of JavaScript provided by &lt;strong&gt;HTMX&lt;/strong&gt; and &lt;strong&gt;AlpineJS&lt;/strong&gt;, and styled with &lt;strong&gt;TailwindCSS&lt;/strong&gt;.&lt;/p&gt;
-&lt;h4&gt;Why Templ?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why-templ&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#why-templ&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Templ allows for creating reusable HTML components that integrate seamlessly with Golang code. For example, consider the MainPage component that lists the post cards:&lt;/p&gt;
+&lt;h3&gt;O Frontend&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;o-frontend&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#o-frontend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Como mencionado anteriormente, o frontend é essencialmente HTML puro com uma pequena quantidade de JavaScript fornecida por &lt;strong&gt;HTMX&lt;/strong&gt; e &lt;strong&gt;AlpineJS&lt;/strong&gt;, e estilizado com &lt;strong&gt;TailwindCSS&lt;/strong&gt;.&lt;/p&gt;
+&lt;h4&gt;Por que Templ?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;por-que-templ&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#por-que-templ&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Templ permite criar componentes HTML reutilizáveis que se integram perfeitamente com código Golang. Por exemplo, considere o componente MainPage que lista os cards de posts:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;templ&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;MainPage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;blogname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;posts&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;repository&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;authenticated&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;bool&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -410,7 +718,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
@@ -418,33 +726,35 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Note: The Header and PostCard components are defined in the components package.&lt;/p&gt;
+  &lt;p&gt;Nota: Os componentes Header e PostCard são definidos no pacote components.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The Golang code for rendering the page is straightforward:&lt;/p&gt;
+&lt;p&gt;O código Golang para renderizar a página é direto:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;mainPage&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;MainPage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;blogName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;pagetitle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;posts&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;authenticated&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mainPage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// w is the http.ResponseWriter&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mainPage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// w é o http.ResponseWriter&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
     class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
-    title=&#34;Copy code&#34;
+    title=&#34;Copiar código&#34;
   &gt;
     &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
 &lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h4&gt;HTMX and AlpineJS&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;htmx-and-alpinejs&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#htmx-and-alpinejs&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;I used a small amount of &lt;strong&gt;HTMX&lt;/strong&gt; primarily for making HTTP requests—such as deleting a post, handling login, and enabling live reload in the editor.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;AlpineJS&lt;/strong&gt; is employed mainly to toggle the visibility of the table of contents (TOC) and to switch the color scheme.&lt;/p&gt;
-&lt;h3&gt;Database&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;database&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#database&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Since this is a relatively simple app, I chose not to use an ORM and instead went with SQLC—a tool that compiles SQL queries into Go code, ensuring type safety.&lt;/p&gt;
-&lt;p&gt;For database migrations, I&amp;rsquo;m using golang-migrate.&lt;/p&gt;
-&lt;h1&gt;Conclusion&lt;/h1&gt;&lt;p&gt;As you can see, there is still some work to be done (which I plan to address someday, hopefully), but for now the blog meets my needs.&lt;/p&gt;
-&lt;p&gt;Regarding the technologies, I really enjoyed working with them. It was a great experience developing this app using the &lt;strong&gt;GOTTH&lt;/strong&gt; stack, as all the tools have supportive communities and excellent documentation.&lt;/p&gt;
-&lt;p&gt;I liked it so much that I&amp;rsquo;m planning to build a simple web app for organizing personal finances (e.g., tracking monthly expenses), since I haven&amp;rsquo;t found a good free app available. Perhaps someday I&amp;rsquo;ll write a post about that as well.&lt;/p&gt;
-&lt;p&gt;Until then, thanks for taking the time to read this.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Check out my &lt;a href=&#34;https://portfolio.luizgustavojunqueira.com&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Portfólio&lt;/a&gt; too. There&amp;rsquo;s a post coming about it soon too.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;HTMX e AlpineJS&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;htmx-e-alpinejs&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#htmx-e-alpinejs&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Usei uma pequena quantidade de &lt;strong&gt;HTMX&lt;/strong&gt; principalmente para fazer requisições HTTP — como deletar um post, lidar com login e habilitar recarregamento ao vivo no editor.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AlpineJS&lt;/strong&gt; é empregado principalmente para alternar a visibilidade do índice (TOC) e para mudar o esquema de cores.&lt;/p&gt;
+&lt;h3&gt;Banco de Dados&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;banco-de-dados&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#banco-de-dados&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Como esta é uma aplicação relativamente simples, escolhi não usar um ORM e, em vez disso, optei pelo SQLC — uma ferramenta que compila consultas SQL em código Go, garantindo segurança de tipos.&lt;/p&gt;
+&lt;p&gt;Para migrações de banco de dados, estou usando golang-migrate.&lt;/p&gt;
+&lt;h1&gt;Conclusão&lt;/h1&gt;&lt;p&gt;Como você pode ver, ainda há algum trabalho a ser feito (que planejo abordar algum dia, espero), mas por enquanto o blog atende minhas necessidades.&lt;/p&gt;
+&lt;p&gt;Em relação às tecnologias, realmente gostei de trabalhar com elas. Foi uma ótima experiência desenvolver esta aplicação usando a stack &lt;strong&gt;GOTTH&lt;/strong&gt;, já que todas as ferramentas têm comunidades solidárias e excelente documentação.&lt;/p&gt;
+&lt;p&gt;Gostei tanto que estou planejando construir uma aplicação web simples para organizar finanças pessoais (por exemplo, rastrear despesas mensais), já que não encontrei um bom aplicativo gratuito disponível. Talvez algum dia eu escreva um post sobre isso também.&lt;/p&gt;
+&lt;p&gt;Até lá, obrigado por dedicar seu tempo para ler isto.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Confira meu &lt;a href=&#34;https://portfolio.luizgustavojunqueira.com&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Portfólio&lt;svg class=&#34;hx:inline hx:rtl:rotate-270 hx:align-baseline&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; viewBox=&#34;0 0 24 24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+ &lt;path d=&#34;m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;/&gt;
+&lt;/svg&gt;&lt;/a&gt; também. Em breve haverá um post sobre ele também.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
       </description>
     </item>
     

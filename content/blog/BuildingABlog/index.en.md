@@ -42,14 +42,14 @@ The package is named Blogo (a blend of "Blog" and "Go") and requires the followi
 
 ```go
 type BlogoConfig struct {
-	BlogName   string
-	Title      string
-	Port       string
-	DB         *sql.DB
-	AuthConfig *auth.AuthConfig
-	Logger     *log.Logger
-	Location   *time.Location
-	Queries    *repository.Queries
+ BlogName   string
+ Title      string
+ Port       string
+ DB         *sql.DB
+ AuthConfig *auth.AuthConfig
+ Logger     *log.Logger
+ Location   *time.Location
+ Queries    *repository.Queries
 }
 ```
 
@@ -83,16 +83,16 @@ Templ allows for creating reusable HTML components that integrate seamlessly wit
 
 ```go
 templ MainPage(blogname string, posts []repository.Post, authenticated bool) {
-	if authenticated {
-		@components.Header(blogname, []string{"New Post", "Logout"}, []string{"/editor", "/logout"})
-	} else {
-		@components.Header(blogname, []string{"Login"}, []string{"/login"})
-	}
-	<ul id="posts-list" class="min-h-screen flex flex-col items-center">
-		for _, post := range posts {
-			@components.PostCard(post, authenticated)
-		}
-	</ul>
+ if authenticated {
+  @components.Header(blogname, []string{"New Post", "Logout"}, []string{"/editor", "/logout"})
+ } else {
+  @components.Header(blogname, []string{"Login"}, []string{"/login"})
+ }
+ <ul id="posts-list" class="min-h-screen flex flex-col items-center">
+  for _, post := range posts {
+   @components.PostCard(post, authenticated)
+  }
+ </ul>
 }
 ```
 
