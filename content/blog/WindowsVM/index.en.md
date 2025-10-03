@@ -1,6 +1,6 @@
 +++
 date = '2025-10-03T07:20:59-04:00'
-draft = true
+draft = false
 title = 'Windows VM on Linux'
 +++
 
