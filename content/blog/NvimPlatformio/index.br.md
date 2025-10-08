@@ -208,6 +208,37 @@ Pronto, agora como podemos ver abaixo, sem erros no editor e com auto complete f
 
 <img src="https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/NvimPlatformio/editor.png" alt="Nvim PlatformIO" />
 
+Além disso, caso queira, pode adicionar um arquivo .clangd na raiz do projeto com o seguinte conteúdo:
+
+```
+
+# clangd controls options for the LSP *server*
+CompileFlags:
+  Add: [
+    -DSSIZE_MAX,
+    -DLWIP_NO_UNISTD_H=1,
+    -Dssize_t=long,
+    -D_SSIZE_T_DECLARED,
+    -Wno-unknown-warning-option
+  ]
+  Remove: [
+    -mlong-calls,
+    -fno-tree-switch-conversion,
+    -mtext-section-literals,
+    -mlongcalls,
+    -fstrict-volatile-bitfields,
+    -free,
+    -fipa-pta,
+    -march=*,
+    -mabi=*,
+    -mcpu=*
+  ]
+Diagnostics:
+  Suppress: "pp_including_mainfile_in_preamble"
+
+```
+
+Assim vai evitar alguns warnings desnecessários.
 
 ## Considerações finais
 
