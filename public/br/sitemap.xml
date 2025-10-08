@@ -2,21 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/blog/</loc>
-    <lastmod>2025-10-03T07:20:59-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/en/blog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="br"
-                href="//localhost:1313/blog/"
-                />
+    <loc>//localhost:1313/blog/nvimplatformio/</loc>
+    <lastmod>2025-10-08T18:26:58-04:00</lastmod>
   </url><url>
     <loc>//localhost:1313/blog/windowsvm/</loc>
-    <lastmod>2025-10-03T07:20:59-04:00</lastmod>
+    <lastmod>2025-10-03T10:15:09-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -65,6 +55,19 @@
                 rel="alternate"
                 hreflang="br"
                 href="//localhost:1313/"
+                />
+  </url><url>
+    <loc>//localhost:1313/blog/</loc>
+    <lastmod>2025-10-03T10:12:22-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/en/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="br"
+                href="//localhost:1313/blog/"
                 />
   </url><url>
     <loc>//localhost:1313/categories/</loc>

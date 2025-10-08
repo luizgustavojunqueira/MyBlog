@@ -8,15 +8,15 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Construindo meu Blog – Luiz Gustavo Junqueira</title>
-  <meta name="description" content="Neste post, vou falar mais profundamente sobre por que e como construí este blog." /><link rel="canonical" href="//localhost:1313/blog/buildingablog/" itemprop="url" />
+<title>NvimPlatformio – Luiz Gustavo Junqueira</title>
+  <meta name="description" content="Hoje vou compartilhar um pouco do meu setup de desenvolvimento na plataforma Arduino utilizando o PlatformIO" /><link rel="canonical" href="//localhost:1313/blog/nvimplatformio/" itemprop="url" />
 
-<meta property="og:title" content="Construindo meu Blog">
+<meta property="og:title" content="NvimPlatformio">
 <meta
   property="og:description"
   content="
     
-      Neste post, vou falar mais profundamente sobre por que e como construí este blog.
+      Hoje vou compartilhar um pouco do meu setup de desenvolvimento na plataforma Arduino utilizando o PlatformIO
     
   ">
 <meta
@@ -24,27 +24,27 @@
   content="
     article
   ">
-<meta property="og:url" content="//localhost:1313/blog/buildingablog/"><meta property="article:section" content="blog">
+<meta property="og:url" content="//localhost:1313/blog/nvimplatformio/"><meta property="article:section" content="blog">
 
 <meta
   property="article:published_time"
-  content="2025-09-28T12:59:28-04:00">
+  content="2025-10-08T18:26:58-04:00">
 
 
 <meta
   property="article:modified_time"
-  content="2025-09-29T19:46:45-04:00">
+  content="2025-10-08T18:26:58-04:00">
 
 
 
-  <meta itemprop="name" content="Construindo meu Blog">
-  <meta itemprop="description" content="Neste post, vou falar mais profundamente sobre por que e como construí este blog.">
-  <meta itemprop="datePublished" content="2025-09-28T12:59:28-04:00">
-  <meta itemprop="dateModified" content="2025-09-29T19:46:45-04:00">
-  <meta itemprop="wordCount" content="797">
+  <meta itemprop="name" content="NvimPlatformio">
+  <meta itemprop="description" content="Hoje vou compartilhar um pouco do meu setup de desenvolvimento na plataforma Arduino utilizando o PlatformIO">
+  <meta itemprop="datePublished" content="2025-10-08T18:26:58-04:00">
+  <meta itemprop="dateModified" content="2025-10-08T18:26:58-04:00">
+  <meta itemprop="wordCount" content="1148">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Construindo meu Blog">
-  <meta name="twitter:description" content="Neste post, vou falar mais profundamente sobre por que e como construí este blog.">
+  <meta name="twitter:title" content="NvimPlatformio">
+  <meta name="twitter:description" content="Hoje vou compartilhar um pouco do meu setup de desenvolvimento na plataforma Arduino utilizando o PlatformIO">
 <link href="/css/compiled/main.css" rel="stylesheet" />
     <link href="/css/variables.css" rel="stylesheet" />
     <link href="/css/custom.css" rel="stylesheet" />
@@ -220,13 +220,40 @@
   >Blog Posts
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></span>
     </a><div class="hx:ltr:pr-0 hx:overflow-hidden">
-        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><a
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col open"><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
     href="/blog/nvimplatformio/"
     
   >NvimPlatformio
     </a>
+  
+    <ul class='hx:flex hx:flex-col hx:gap-1 hx:relative hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:dark:before:bg-neutral-800 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:pr-3 hx:rtl:before:right-0 hx:ltr:ml-3 hx:rtl:mr-3'><li>
+              <a
+                href="#introdu%c3%a7%c3%a3o"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >Introdução</a>
+            </li>
+          <li>
+              <a
+                href="#setup"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >Setup</a>
+            </li>
+          <li>
+              <a
+                href="#configura%c3%a7%c3%a3o-do-lazyvim"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >Configuração do LazyVim</a>
+            </li>
+          <li>
+              <a
+                href="#considera%c3%a7%c3%b5es-finais"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >Considerações finais</a>
+            </li>
+          </ul>
+  
               
             </li><li class="hx:flex hx:flex-col "><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
@@ -244,28 +271,13 @@
   >KVStore
     </a>
               
-            </li><li class="hx:flex hx:flex-col open"><a
+            </li><li class="hx:flex hx:flex-col "><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
     href="/blog/buildingablog/"
     
   >Construindo meu Blog
     </a>
-  
-    <ul class='hx:flex hx:flex-col hx:gap-1 hx:relative hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:dark:before:bg-neutral-800 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:pr-3 hx:rtl:before:right-0 hx:ltr:ml-3 hx:rtl:mr-3'><li>
-              <a
-                href="#tecnologias"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >Tecnologias</a>
-            </li>
-          <li>
-              <a
-                href="#como-funciona"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >Como Funciona</a>
-            </li>
-          </ul>
-  
               
             </li></ul>
       </div></li><li><a
@@ -299,7 +311,7 @@
         
         <li class="hx:flex hx:flex-col">
           <a
-            href="/en/blog/buildingablog/"
+            href="/en/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
           >English</a>
         </li>
@@ -307,7 +319,7 @@
         
         <li class="hx:flex hx:flex-col">
           <a
-            href="/blog/buildingablog/"
+            href="/blog/nvimplatformio/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
           >Português<span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span></a>
         </li>
@@ -364,37 +376,21 @@
 <nav class="hextra-toc hx:order-last hx:hidden hx:w-64 hx:shrink-0 hx:xl:block hx:print:hidden hx:px-4" aria-label="table of contents">
     <div class="hextra-scrollbar hx:sticky hx:top-16 hx:overflow-y-auto hx:pr-4 hx:pt-6 hx:text-sm [hyphens:auto] hx:max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] hx:ltr:-mr-4 hx:rtl:-ml-4"><p class="hx:mb-4 hx:font-semibold hx:tracking-tight">Nesta página</p><ul>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#tecnologias">Tecnologias
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#introdu%c3%a7%c3%a3o">Introdução
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#como-funciona">Como Funciona
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#setup">Setup
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#o-backend">O Backend
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#configura%c3%a7%c3%a3o-do-lazyvim">Configuração do LazyVim
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-8 hx:rtl:pr-8 hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#posthandler">PostHandler
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#considera%c3%a7%c3%b5es-finais">Considerações finais
         </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#o-frontend">O Frontend
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-8 hx:rtl:pr-8 hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#por-que-templ">Por que Templ?
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-8 hx:rtl:pr-8 hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#htmx-e-alpinejs">HTMX e AlpineJS
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#banco-de-dados">Banco de Dados
-        </a>
-      </li></ul><ul></ul>
+      </li></ul>
       <div class="hx:mt-8 hx:border-t hx:bg-white hx:pt-8 hx:shadow-[0_-12px_16px_white] hx:dark:bg-dark hx:dark:shadow-[0_-12px_16px_#111] hx:sticky hx:bottom-0 hx:flex hx:flex-col hx:items-start hx:gap-2 hx:pb-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-t hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:border-neutral-400">
         <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx:cursor-pointer hx:transition-all hx:duration-75 hx:opacity-0 hx:text-xs hx:font-medium hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-100 hx:contrast-more:text-gray-800 hx:contrast-more:dark:text-gray-50">
           <span>Voltar para cima</span>
@@ -412,119 +408,37 @@
         <div class="hx:mt-1.5 hx:flex hx:items-center hx:gap-1 hx:overflow-hidden hx:text-sm hx:text-gray-500 hx:dark:text-gray-400 hx:contrast-more:text-current">
         <div class="hx:whitespace-nowrap hx:transition-colors hx:min-w-[24px] hx:overflow-hidden hx:text-ellipsis hx:hover:text-gray-900 hx:dark:hover:text-gray-100">
           <a href="/blog/">Blog Posts</a>
-        </div><svg class="hx:w-3.5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx:whitespace-nowrap hx:transition-colors hx:font-medium hx:text-gray-700 hx:contrast-more:font-bold hx:contrast-more:text-current hx:dark:text-gray-100 hx:contrast-more:dark:text-current">Construindo meu Blog</div>
+        </div><svg class="hx:w-3.5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx:whitespace-nowrap hx:transition-colors hx:font-medium hx:text-gray-700 hx:contrast-more:font-bold hx:contrast-more:text-current hx:dark:text-gray-100 hx:contrast-more:dark:text-current">NvimPlatformio</div>
   </div>
 
-        <h1 class="hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">Construindo meu Blog</h1>
-        <div class="hx:mt-4 hx:mb-16 hx:text-gray-500 hx:dark:text-gray-400 hx:text-sm hx:flex hx:items-center hx:flex-wrap hx:gap-y-2"><span class="hx:mr-1">Gwengolo 28, 2025</span></div>
+        <h1 class="hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">NvimPlatformio</h1>
+        <div class="hx:mt-4 hx:mb-16 hx:text-gray-500 hx:dark:text-gray-400 hx:text-sm hx:flex hx:items-center hx:flex-wrap hx:gap-y-2"><span class="hx:mr-1">Here 8, 2025</span></div>
         <div class="content">
-          <p>Neste post, vou falar mais profundamente sobre por que e como construí este blog.</p>
-<h1>Como Começou</h1><p>Há muitos meses, comecei a assistir um YouTuber chamado <strong>ThePrimeAgen</strong>. De vez em quando, ele fala sobre Golang e expressa seu entusiasmo pela linguagem. Intrigado por suas percepções, decidi dar uma chance ao Golang para ver do que se tratava.</p>
-<p>Comecei a experimentar com Golang há cerca de seis meses, resolvendo alguns problemas do <a href="https://judge.beecrowd.com/"target="_blank" rel="noopener">BeeCrowd<svg class="hx:inline hx:rtl:rotate-270 hx:align-baseline" height="1em" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
- <path d="m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></a> apenas para pegar o jeito. Logo depois, construí alguns servidores REST API simples, já que Golang é muito adequado para esse tipo de software.</p>
-<p>Mas por que criar um blog?</p>
-<p>Sou um grande fã de blogs de tecnologia e, como a maior parte do meu conhecimento veio da leitura deles, achei que seria legal ter o meu próprio. Como mencionei em meu <a href="https://blog.luizgustavojunqueira.com/post/my-blog#why-i-made-this-blog"target="_blank" rel="noopener">post anterior<svg class="hx:inline hx:rtl:rotate-270 hx:align-baseline" height="1em" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
- <path d="m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></a>, também queria testar minhas habilidades, implantar uma aplicação além do localhost e melhorar minha escrita.</p>
-<h2>Tecnologias<span class="hx:absolute hx:-mt-20" id="tecnologias"></span>
-    <a href="#tecnologias" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Para construir este blog, decidi usar apenas tecnologias que nunca havia usado antes, então escolhi a stack GOTTH:</p>
-<ul>
-<li><strong>Golang</strong>: para servir a aplicação web</li>
-<li><strong>Templ</strong>: para templates HTML</li>
-<li><strong>TailwindCSS</strong>: para estilização e design bonito</li>
-<li><strong>HTMX</strong>: para melhor interatividade e navegação</li>
-<li><strong>AlpineJS</strong>: para animações interativas</li>
-</ul>
-<p>Também usei PostgreSQL como banco de dados, embora planeje mudar para SQLite no futuro.</p>
-<h2>Como Funciona<span class="hx:absolute hx:-mt-20" id="como-funciona"></span>
-    <a href="#como-funciona" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h3>O Backend<span class="hx:absolute hx:-mt-20" id="o-backend"></span>
-    <a href="#o-backend" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Desenvolvi o backend como um pacote para que pudesse ser reutilizado por qualquer pessoa que queira um blog simples sem muito trabalho. Atualmente, as únicas opções de customização disponíveis são para o título do blog, título da página e usuário administrador.</p>
-<p>Planejo adicionar mais opções de customização — como esquemas de cores e ajustes de layout — no futuro, uma vez que eu atenda outras prioridades.</p>
-<p>O pacote se chama Blogo (uma mistura de &ldquo;Blog&rdquo; e &ldquo;Go&rdquo;) e requer a seguinte configuração:</p>
-<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
-
-<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">BlogoConfig</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">BlogName</span><span class="w">   </span><span class="kt">string</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Title</span><span class="w">      </span><span class="kt">string</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Port</span><span class="w">       </span><span class="kt">string</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">DB</span><span class="w">         </span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">AuthConfig</span><span class="w"> </span><span class="o">*</span><span class="nx">auth</span><span class="p">.</span><span class="nx">AuthConfig</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Logger</span><span class="w">     </span><span class="o">*</span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Location</span><span class="w">   </span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Location</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">Queries</span><span class="w">    </span><span class="o">*</span><span class="nx">repository</span><span class="p">.</span><span class="nx">Queries</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
-  <button
-    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
-  >
-    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
-<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
-  </button>
-</div>
-</div>
-<p>Você pode executar o servidor com:</p>
-<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
-
-<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">blog</span><span class="p">.</span><span class="nf">Start</span><span class="p">()</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
-  <button
-    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
-  >
-    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
-<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
-  </button>
-</div>
-</div>
-<p>Um exemplo mais detalhado está disponível no meu <a href="https://github.com/luizgustavojunqueira/Blogo/blob/main/cmd/blog/main.go"target="_blank" rel="noopener">repositório<svg class="hx:inline hx:rtl:rotate-270 hx:align-baseline" height="1em" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
- <path d="m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></a>, onde você pode ver a configuração do meu blog pessoal.</p>
-<h4>PostHandler<span class="hx:absolute hx:-mt-20" id="posthandler"></span>
-    <a href="#posthandler" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>O servidor consiste em um PostHandler e um AuthHandler. A parte de autenticação é direta, então vou focar no PostHandler, que compreende sete funções para gerenciar posts:</p>
-<ul>
-<li><strong>GetPosts</strong>: Renderiza uma lista de cards de posts como HTML usando um template Templ.</li>
-<li><strong>ViewPost</strong>: Renderiza o post completo.</li>
-<li><strong>DeletePost</strong>: Deleta o post especificado.</li>
-<li><strong>Editor</strong>: Renderiza um editor simples onde posso inserir o título do post, slug, descrição e conteúdo em Markdown (é bem básico no momento, então sem imagens).</li>
-<li><strong>Edit</strong>: Edita um post existente.</li>
-<li><strong>CreatePost</strong>: Gera o índice, converte o conteúdo Markdown em HTML e salva o post.</li>
-<li><strong>ParseMarkdown</strong>: Similar ao CreatePost mas retorna o conteúdo HTML — isso é usado para recarregamento ao vivo no editor.</li>
-</ul>
-<h3>O Frontend<span class="hx:absolute hx:-mt-20" id="o-frontend"></span>
-    <a href="#o-frontend" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Como mencionado anteriormente, o frontend é essencialmente HTML puro com uma pequena quantidade de JavaScript fornecida por <strong>HTMX</strong> e <strong>AlpineJS</strong>, e estilizado com <strong>TailwindCSS</strong>.</p>
-<h4>Por que Templ?<span class="hx:absolute hx:-mt-20" id="por-que-templ"></span>
-    <a href="#por-que-templ" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>Templ permite criar componentes HTML reutilizáveis que se integram perfeitamente com código Golang. Por exemplo, considere o componente MainPage que lista os cards de posts:</p>
-<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
-
-<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">templ</span><span class="w"> </span><span class="nf">MainPage</span><span class="p">(</span><span class="nx">blogname</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">posts</span><span class="w"> </span><span class="p">[]</span><span class="nx">repository</span><span class="p">.</span><span class="nx">Post</span><span class="p">,</span><span class="w"> </span><span class="nx">authenticated</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">authenticated</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="err">@</span><span class="nx">components</span><span class="p">.</span><span class="nf">Header</span><span class="p">(</span><span class="nx">blogname</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;New Post&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Logout&#34;</span><span class="p">},</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;/editor&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/logout&#34;</span><span class="p">})</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="err">@</span><span class="nx">components</span><span class="p">.</span><span class="nf">Header</span><span class="p">(</span><span class="nx">blogname</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Login&#34;</span><span class="p">},</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;/login&#34;</span><span class="p">})</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">&lt;</span><span class="nx">ul</span><span class="w"> </span><span class="nx">id</span><span class="p">=</span><span class="s">&#34;posts-list&#34;</span><span class="w"> </span><span class="nx">class</span><span class="p">=</span><span class="s">&#34;min-h-screen flex flex-col items-center&#34;</span><span class="p">&gt;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">post</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">posts</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="err">@</span><span class="nx">components</span><span class="p">.</span><span class="nf">PostCard</span><span class="p">(</span><span class="nx">post</span><span class="p">,</span><span class="w"> </span><span class="nx">authenticated</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">&lt;</span><span class="o">/</span><span class="nx">ul</span><span class="p">&gt;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
-  <button
-    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copiar código"
-  >
-    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
-<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
-  </button>
-</div>
-</div>
+          <p>Hoje vou compartilhar um pouco do meu setup de desenvolvimento na plataforma Arduino utilizando o PlatformIO</p>
+<h2>Introdução<span class="hx:absolute hx:-mt-20" id="introdução"></span>
+    <a href="#introdu%c3%a7%c3%a3o" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Bom, primeiramente, o que é o PlatformIO?</p>
 <blockquote>
-  <p>Nota: Os componentes Header e PostCard são definidos no pacote components.</p>
+  <p>PlatformIO é um ecossistema de desenvolvimento para IoT que inclui um IDE, um sistema de construção e uma biblioteca de gerenciamento. Ele suporta mais de 1500 placas de desenvolvimento, incluindo Arduino, ESP8266, ESP32, STM32 e muitas outras. O PlatformIO é uma alternativa ao Arduino IDE tradicional, oferecendo mais recursos e flexibilidade para desenvolvedores.</p>
 </blockquote>
-<p>O código Golang para renderizar a página é direto:</p>
+<p>Pode ser usado como uma extensão do VSCode, ou diretamente como CLI.</p>
+<p>Eu utilizo por preferência com relação a IDE do Arduino, visto que o em um setup com platformio, seja com VSCode ou Neovim, o ambiente de desenvolvimento é mais robusto, com mais recursos e flexibilidade, e, o mais importante para mim, a LSP funciona muito melhor do que a da IDE do Arduino.</p>
+<p>Segundamente, por que o Neovim?</p>
+<p>Eu utilizo o Neovim como editor de texto principal, e, por consequência, como IDE. Acredito que o Neovim é uma ferramenta poderosa e flexível, que me permite personalizar meu ambiente de desenvolvimento de acordo com minhas necessidades e me permite maior velocidade de desenvolvimento.</p>
+<h2>Setup<span class="hx:absolute hx:-mt-20" id="setup"></span>
+    <a href="#setup" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Bom, antigamente eu utilizava uma configuração personalizada do Neovim que eu mesmo montei ao longo de uns meses, mas já estava se tornando bem instável e causando algumas dificuldades em alguns casos. Com isso, junto com minha migração de Arch + Hyprland para Omarchy, que já vem por padrão com LazyVim configurado, decidi utilizar o LazyVim como base para meu setup.</p>
+<p>Anteriormente eu havia configurado o clangd para funcionar como LSP para o platformio, mas com o LazyVim, o setup ficou um pouco diferente mas mais simples.</p>
+<p>Bom, primeiramente, para que isso funcione é necessário ter a CLI do PlatformIO instalada. Para isso, basta seguir as instruções no site oficial: <a href="https://platformio.org/install/cli"target="_blank" rel="noopener">https://platformio.org/install/cli<svg class="hx:inline hx:rtl:rotate-270 hx:align-baseline" height="1em" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <path d="m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></a></p>
+<p>Assim, você terá acesso ao comando <code>pio</code> no terminal, que será essencial para o funcionamento do setup.</p>
+<p>Além disso, é necessário ter a LSP <code>clandg</code> instalada, pode ser pelo <code>Mason</code> mesmo, que é o gerenciador de LSP padrão do LazyVim.</p>
+<h2>Configuração do LazyVim<span class="hx:absolute hx:-mt-20" id="configuração-do-lazyvim"></span>
+    <a href="#configura%c3%a7%c3%a3o-do-lazyvim" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Bom, como o clangd por padrão nao vem com suporte ao PlatformIO, é necessário adicionar algumas flags para que ele funcione corretamente.</p>
+<p>Essa configuração vai depender de qual placa de desenvolvimento você pretende utilizar, pois terá que fazer a instalação da toolchain correta para a placa.</p>
+<p>A toolchain você pode instalar pelo menu <code>Platforms</code> do PlatformIO, ou diretamente pelo terminal com o comando:</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
-<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">mainPage</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">pages</span><span class="p">.</span><span class="nf">MainPage</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">blogName</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">pagetitle</span><span class="p">,</span><span class="w"> </span><span class="nx">posts</span><span class="p">,</span><span class="w"> </span><span class="nx">authenticated</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nx">mainPage</span><span class="p">.</span><span class="nf">Render</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">w</span><span class="p">)</span><span class="w"> </span><span class="c1">// w é o http.ResponseWriter</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pio platform install &lt;nome_da_plataforma&gt;</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
   <button
     class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
     title="Copiar código"
@@ -534,25 +448,184 @@
   </button>
 </div>
 </div>
-<h4>HTMX e AlpineJS<span class="hx:absolute hx:-mt-20" id="htmx-e-alpinejs"></span>
-    <a href="#htmx-e-alpinejs" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>Usei uma pequena quantidade de <strong>HTMX</strong> principalmente para fazer requisições HTTP — como deletar um post, lidar com login e habilitar recarregamento ao vivo no editor.</p>
-<p><strong>AlpineJS</strong> é empregado principalmente para alternar a visibilidade do índice (TOC) e para mudar o esquema de cores.</p>
-<h3>Banco de Dados<span class="hx:absolute hx:-mt-20" id="banco-de-dados"></span>
-    <a href="#banco-de-dados" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Como esta é uma aplicação relativamente simples, escolhi não usar um ORM e, em vez disso, optei pelo SQLC — uma ferramenta que compila consultas SQL em código Go, garantindo segurança de tipos.</p>
-<p>Para migrações de banco de dados, estou usando golang-migrate.</p>
-<h1>Conclusão</h1><p>Como você pode ver, ainda há algum trabalho a ser feito (que planejo abordar algum dia, espero), mas por enquanto o blog atende minhas necessidades.</p>
-<p>Em relação às tecnologias, realmente gostei de trabalhar com elas. Foi uma ótima experiência desenvolver esta aplicação usando a stack <strong>GOTTH</strong>, já que todas as ferramentas têm comunidades solidárias e excelente documentação.</p>
-<p>Gostei tanto que estou planejando construir uma aplicação web simples para organizar finanças pessoais (por exemplo, rastrear despesas mensais), já que não encontrei um bom aplicativo gratuito disponível. Talvez algum dia eu escreva um post sobre isso também.</p>
-<p>Até lá, obrigado por dedicar seu tempo para ler isto.</p>
-<p><strong><em>Confira meu <a href="https://portfolio.luizgustavojunqueira.com"target="_blank" rel="noopener">Portfólio<svg class="hx:inline hx:rtl:rotate-270 hx:align-baseline" height="1em" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
- <path d="m9.1716 7.7574h7.0711m0 0v7.0711m0-7.0711-8.4853 8.4853" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></a> também. Em breve haverá um post sobre ele também.</em></strong></p>
+<p>Por exemplo, para instalar a toolchain do ESP32, o comando seria:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pio platform install espressif32</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copiar código"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<p>Isso vai adicionar uma nova pasta na sua instalação do PlatformIO, que por padrão fica em <code>~/.platformio/packages/</code>, mas não necessariamente com o mesmo nome da plataforma, por exemplo, o espressif32 fica em <code>~/.platformio/packages/toolchain-xtensa32</code> e o esp8266 em <code>~/.platformio/packages/toolchain-xtensa</code>.</p>
+<p>Bom, uma vez que temos isso, vamos para a configuração do LazyVim.</p>
+<p>Como não consegui descobrir e não tive tempo de estudar muito como fazer a configuração usando o nvim-lspconfig, fiz um Autocmd para iniciar o clangd com as flags corretas quando um arquivo <code>.h</code> ou <code>.cpp</code> for aberto. Deixei sem nenhuma checagem se está um projeto do PlatformIO ou não, visto que uso cpp apenas para isso, e para os casos que precisei que não envolve o PlatformIO, não tive problemas com isso, o clangd funcionou normal.</p>
+<p>Então, o LazyVim já vem com um arquivo em <code>~/.config/nvim/lua/config/autocmds.lua</code> vazio, onde eu adicionei o seguinte código:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">clangdesp_started</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_create_user_command</span><span class="p">(</span><span class="s2">&#34;StartClangdesp&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">if</span> <span class="n">clangdesp_started</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vim.notify</span><span class="p">(</span><span class="s2">&#34;clangdesp já está rodando&#34;</span><span class="p">,</span> <span class="n">vim.log</span><span class="p">.</span><span class="n">levels.INFO</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">local</span> <span class="n">client_id</span> <span class="o">=</span> <span class="n">vim.lsp</span><span class="p">.</span><span class="n">start</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;clangdesp&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmd</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;clangd&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--background-index&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;-j=12&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--clang-tidy&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--all-scopes-completion&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--cross-file-rename&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--completion-style=detailed&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--header-insertion-decorators&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--header-insertion=iwyu&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--pch-storage=memory&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--suggest-missing-includes&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--query-driver=/home/seu_usuario/.platformio/packages/toolchain-xtensa-esp32/bin/xtensa-esp32-elf-gcc*,/home/luizg/.platformio/packages/toolchain-xtensa-esp32/bin/xtensa-esp32-elf-g++*,xtensa-esp32-elf-gcc*,xtensa-esp32-elf-g++*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;--log=verbose&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">vim.fs</span><span class="p">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">vim.fs</span><span class="p">.</span><span class="n">find</span><span class="p">({</span> <span class="s2">&#34;compile_commands.json&#34;</span><span class="p">,</span> <span class="s2">&#34;.clangd&#34;</span> <span class="p">},</span> <span class="p">{</span> <span class="n">upward</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">})[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">      <span class="ow">or</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">getcwd</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">single_file_support</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">capabilities</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">offsetEncoding</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;utf-8&#34;</span><span class="p">,</span> <span class="s2">&#34;utf-16&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="n">textDocument</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">completion</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">completionItem</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">commitCharactersSupport</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">deprecatedSupport</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">documentationFormat</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span> <span class="s2">&#34;plaintext&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="n">insertReplaceSupport</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">insertTextModeSupport</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="n">valueSet</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="n">labelDetailsSupport</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">preselectSupport</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">resolveSupport</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;documentation&#34;</span><span class="p">,</span> <span class="s2">&#34;detail&#34;</span><span class="p">,</span> <span class="s2">&#34;additionalTextEdits&#34;</span><span class="p">,</span> <span class="s2">&#34;command&#34;</span><span class="p">,</span> <span class="s2">&#34;data&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="n">snippetSupport</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tagSupport</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="n">valueSet</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="n">completionList</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">itemDefaults</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;commitCharacters&#34;</span><span class="p">,</span> <span class="s2">&#34;editRange&#34;</span><span class="p">,</span> <span class="s2">&#34;insertTextFormat&#34;</span><span class="p">,</span> <span class="s2">&#34;insertTextMode&#34;</span><span class="p">,</span> <span class="s2">&#34;data&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="n">contextSupport</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">editsNearCursor</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">insertTextMode</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">foldingRange</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">dynamicRegistration</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">lineFoldingOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">if</span> <span class="n">client_id</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="n">clangdesp_started</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vim.notify</span><span class="p">(</span><span class="s2">&#34;clangdesp iniciado!&#34;</span><span class="p">,</span> <span class="n">vim.log</span><span class="p">.</span><span class="n">levels.INFO</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span><span class="p">,</span> <span class="p">{})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_create_autocmd</span><span class="p">(</span><span class="s2">&#34;FileType&#34;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pattern</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;cpp&#34;</span><span class="p">,</span> <span class="s2">&#34;h&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">bufnr</span> <span class="o">=</span> <span class="n">args.buf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">clangdesp_clients</span> <span class="o">=</span> <span class="n">vim.lsp</span><span class="p">.</span><span class="n">get_clients</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;clangdesp&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="o">#</span><span class="n">clangdesp_clients</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">clangdesp_started</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">      <span class="n">vim.cmd</span><span class="p">(</span><span class="s2">&#34;StartClangdesp&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">vim.defer_fn</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">clients</span> <span class="o">=</span> <span class="n">vim.lsp</span><span class="p">.</span><span class="n">get_clients</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;clangdesp&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="o">#</span><span class="n">clients</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">          <span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf_attach_client</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="n">clients</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">elseif</span> <span class="o">#</span><span class="n">clangdesp_clients</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">local</span> <span class="n">client</span> <span class="o">=</span> <span class="n">clangdesp_clients</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">if</span> <span class="ow">not</span> <span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf_is_attached</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="n">client.id</span><span class="p">)</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf_attach_client</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="n">client.id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">desc</span> <span class="o">=</span> <span class="s2">&#34;Inicia clangdesp e anexa aos buffers C++/H&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copiar código"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<p>É importante alterar o caminho do <code>--query-driver</code> para o caminho correto da toolchain que você instalou, caso contrário o clangd não vai funcionar corretamente com a plataforma.</p>
+<p>Agora que temos isso, basta abrir um arquivo <code>.cpp</code> ou <code>.h</code>? Não, ainda falta uma coisa.</p>
+<p>Para identificar as bibliotecas e includes que você adicionar pelo PlatformIO corretamente, é necessário gerar o arquivo <code>compile_commands.json</code>, que é um arquivo que contém as flags de compilação para cada arquivo do projeto.</p>
+<p>Para isso, eu costumo adicionar o seguinte script no <code>Makefile</code> dos meus projetos PlatformIO:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">compiledb</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">ifeq</span> <span class="err">(</span><span class="k">$(</span><span class="nv">strip</span> <span class="k">$(</span><span class="nv">RUN_TESTS</span><span class="k">))</span><span class="err">,)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">EXTRA_FILTER_FLAGS</span> <span class="o">:=</span>
+</span></span><span class="line"><span class="cl"><span class="err">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">RUN_LIST</span> <span class="o">:=</span> <span class="k">$(</span>subst <span class="p">;</span>, ,<span class="k">$(</span>RUN_TESTS<span class="k">))</span>
+</span></span><span class="line"><span class="cl">  EXTRA_FILTER_FLAGS :<span class="o">=</span> <span class="k">$(</span>foreach t,<span class="k">$(</span>RUN_LIST<span class="k">)</span>,-f <span class="s2">&#34;</span><span class="k">$(</span>t<span class="k">)</span><span class="s2">*&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">erase</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	@echo <span class="s2">&#34;Erasing the board&#34;</span>
+</span></span><span class="line"><span class="cl">	pio run -t erase --environment <span class="k">$(</span>ENV<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">compiledb</span><span class="o">:</span>	
+</span></span><span class="line"><span class="cl">	@echo <span class="s2">&#34;Generating compile_commands.json&#34;</span>
+</span></span><span class="line"><span class="cl">	rm -rf compile_commands.json .pio/ .cache/ <span class="o">&amp;&amp;</span> pio run -t compiledb --environment <span class="k">$(</span>ENV<span class="k">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">upload_and_monitor</span><span class="o">:</span> <span class="n">upload</span> <span class="n">monitor</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">upload</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	@echo <span class="s2">&#34;Uploading&#34;</span>
+</span></span><span class="line"><span class="cl">	pio run -t upload --environment <span class="si">${</span><span class="nv">ENV</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">monitor</span><span class="o">:</span> 
+</span></span><span class="line"><span class="cl">	@echo <span class="s2">&#34;Monitoring&#34;</span>
+</span></span><span class="line"><span class="cl">	pio run -t monitor
+</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copiar código"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<p>Para usar, basta o comando: <code>ENV=&lt;nome_do_ambiente&gt; make compiledb</code></p>
+<p>Mesma ideia para os outros comandos, de monitor, upload e upload_and_monitor.</p>
+<p>Pronto, agora como podemos ver abaixo, sem erros no editor e com auto complete funcionando perfeitamente.</p>
+<img src="https://luizgustavojunqueira-personalblog.s3.us-east-1.amazonaws.com/NvimPlatformio/editor.png" alt="Nvim PlatformIO" />
+<h2>Considerações finais<span class="hx:absolute hx:-mt-20" id="considerações-finais"></span>
+    <a href="#considera%c3%a7%c3%b5es-finais" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Bom, é isso, espero que tenha ajudado alguém com esse setup. Se tiver alguma dúvida ou sugestão, pode deixar nos comentários.</p>
+<p>Já pesso desculpas anteriormente para os fanáticos por neovim e lua, sei que o código não está 100% otimizado e pode ter algumas melhorias, mas é o que eu consegui fazer até agora e está funcional para o meu uso.</p>
+<p>Até porque, um ponto que acho que seria interessante mudar, mas ainda não tive tempo para testar, é mudar o query-driver com base na plataforma que está sendo usada no momento, pois da forma que está atualmente, caso esteja usando ESP32 e queira trocar para ESP8266, terá que alterar manualmente a configuração do clangd. (O make ainda irá funcionar, apenas terá milhões de erros no editor)</p>
         </div>
-    <div class="hx:mt-12 hx:mb-8 hx:block hx:text-xs hx:text-gray-500 hx:ltr:text-right hx:rtl:text-left hx:dark:text-gray-400">Atualizado por último em <time datetime="2025-09-29T19:46:45.000Z">Gwengolo 29, 2025</time></div><div class="hx:mb-8 hx:flex hx:items-center hx:border-t hx:pt-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-neutral-400 hx:dark:contrast-more:border-neutral-400 hx:print:hidden"><a
-        href="/blog/kvstore/"
-        title="KVStore"
-        class="hx:flex hx:max-w-[50%] hx:items-center hx:gap-1 hx:py-4 hx:text-base hx:font-medium hx:text-gray-600 hx:transition-colors [word-break:break-word] hx:hover:text-primary-600 hx:dark:text-gray-300 hx:md:text-lg hx:ltr:ml-auto hx:ltr:pl-4 hx:ltr:text-right hx:rtl:mr-auto hx:rtl:pr-4 hx:rtl:text-left"
-      >KVStore<svg class="hx:inline hx:h-5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div></main>
+    <div class="hx:mt-12 hx:mb-8 hx:block hx:text-xs hx:text-gray-500 hx:ltr:text-right hx:rtl:text-left hx:dark:text-gray-400">Atualizado por último em <time datetime="2025-10-08T18:26:58.000Z">Here 8, 2025</time></div><div class="hx:mb-8 hx:flex hx:items-center hx:border-t hx:pt-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-neutral-400 hx:dark:contrast-more:border-neutral-400 hx:print:hidden"><a
+        href="/blog/windowsvm/"
+        title="VM Windows no Linux"
+        class="hx:flex hx:max-w-[50%] hx:items-center hx:gap-1 hx:py-4 hx:text-base hx:font-medium hx:text-gray-600 hx:transition-colors [word-break:break-word] hx:hover:text-primary-600 hx:dark:text-gray-300 hx:md:text-lg hx:ltr:pr-4 hx:rtl:pl-4"
+      ><svg class="hx:inline hx:h-5 hx:shrink-0 hx:ltr:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>VM Windows no Linux</a></div></main>
     </article>
   </div>
 
@@ -575,7 +648,7 @@
         
         <li class="hx:flex hx:flex-col">
           <a
-            href="/en/blog/buildingablog/"
+            href="/en/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
           >English</a>
         </li>
@@ -583,7 +656,7 @@
         
         <li class="hx:flex hx:flex-col">
           <a
-            href="/blog/buildingablog/"
+            href="/blog/nvimplatformio/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
           >Português<span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span></a>
         </li>
