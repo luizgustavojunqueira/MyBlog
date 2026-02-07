@@ -1,18 +1,8 @@
 # Hugo configuration file
 title: Luiz Gustavo Junqueira
 
-
-defaultContentLanguage: pt-BR
-
-languages:
-  pt-BR:
-    languageCode: pt-BR
-    languageDirection: ltr
-    languageName: Português
-    weight: 1
-
 outputs:
-  home: [HTML,RSS]
+  home: [HTML, RSS]
 
 # import hextra as module
 module:
